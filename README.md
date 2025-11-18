@@ -1,4 +1,4 @@
-[Hux Blog](https://huangxuan.me)
+[无妄居士的博客](https://dasher-zdh.github.io/·)
 ================================
 
 > I never expected this to become popular.
