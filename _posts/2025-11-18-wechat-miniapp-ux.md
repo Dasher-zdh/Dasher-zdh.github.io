@@ -1,0 +1,37 @@
+### 安装docker-cape
+
+注：需要准备一个能访问外网代理的服务器。
+
+##### 设置docker安装仓库
+
+```shell
+sudo tee /etc/yum.repos.d/docker-ce.repo <<'EOF'
+[docker-ce-stable]
+name=Docker CE Stable - $basearch
+baseurl=https://download.docker.com/linux/centos/8/$basearch/stable
+enabled=1
+gpgcheck=1
+gpgkey=https://download.docker.com/linux/centos/gpg
+EOF
+
+sudo dnf clean all
+sudo dnf makecache
+```
+
+##### 安装依赖
+
+```shell
+yum groupinstall -y "Development Tools"
+sudo dnf install -y container-selinux libcgroup slirp4netns  fuse-overlayfs git glib2-devel libaio-devel libcap-ng-devel pixman-devel zlib-devel  ninja-build qemu-kvm libvirt python3-libvirt libvirt-client virt-install bridge-utils virt-manager   ninja-build
+```
+
+##### 安装docker和docker-compose
+
+```shell
+sudo dnf install -y \
+  --repo=docker-ce-stable \
+  docker-ce \
+  docker-ce-rootless-extras \
+  docker-compose-plugin \
+  docker-buildx-plugin \
+  docker-scan-plugin
