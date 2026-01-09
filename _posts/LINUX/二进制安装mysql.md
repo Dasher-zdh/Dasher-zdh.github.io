@@ -1,0 +1,165 @@
+# 二进制安装mysql
+
+**环境准备：**
+
+服务器环境：Rocky9.x
+
+### 下载安装包
+
+1. 官网下载mysql，二进制安装包，下载地址：`https://www.mysql.com/`。
+
+   ![](./images/image-20260109103307277.png)
+
+1. 选择社区版下载。
+
+   ![image-20260109103322692](./images/image-20260109103322692.png)
+
+2. 选择服务端版本。
+
+   ![image-20260109103754873](./images/image-20260109103754873.png)s
+
+3. 查看服务器的glibc版本`dnf info glibc`,版本`Version:2.34`。
+
+   ```shell
+   [root@localhost ~]# dnf info glibc
+   Last metadata expiration check: 2:23:11 ago on Fri 09 Jan 2026 01:03:28 PM CST.
+   Installed Packages
+   Name         : glibc
+   Version      : 2.34
+   Release      : 168.el9_6.14
+   Architecture : x86_64
+   Size         : 6.1 M
+   Source       : glibc-2.34-168.el9_6.14.src.rpm
+   Repository   : @System
+   From repo    : minimal
+   Summary      : The GNU libc libraries
+   URL          : http://www.gnu.org/software/glibc/
+   License      : LGPLv2+ and LGPLv2+ with exceptions and GPLv2+ and GPLv2+ with exceptions and BSD and Inner-Net and ISC and Public Domain and GFDL
+   Description  : The glibc package contains standard libraries which are used by
+                : multiple programs on the system. In order to save disk space and
+                : memory, as well as to make upgrading easier, common system code is
+                : kept in one place and shared between programs. This particular package
+                : contains the most important sets of shared libraries: the standard C
+                : library and the standard math library. Without these two libraries, a
+                : Linux system will not function.
+   
+   Available Packages
+   Name         : glibc
+   Version      : 2.34
+   Release      : 231.el9_7.2
+   Architecture : x86_64
+   Size         : 2.0 M
+   Source       : glibc-2.34-231.el9_7.2.src.rpm
+   Repository   : baseos
+   Summary      : The GNU libc libraries
+   URL          : http://www.gnu.org/software/glibc/
+   License      : LGPLv2+ and LGPLv2+ with exceptions and GPLv2+ and GPLv2+ with exceptions and BSD and Inner-Net and ISC and Public Domain and GFDL
+   Description  : The glibc package contains standard libraries which are used by
+                : multiple programs on the system. In order to save disk space and
+                : memory, as well as to make upgrading easier, common system code is
+                : kept in one place and shared between programs. This particular package
+                : contains the most important sets of shared libraries: the standard C
+                : library and the standard math library. Without these two libraries, a
+                : Linux system will not function.
+   
+   Name         : glibc
+   Version      : 2.34
+   Release      : 231.el9_7.2
+   Architecture : i686
+   Size         : 1.9 M
+   Source       : glibc-2.34-231.el9_7.2.src.rpm
+   Repository   : baseos
+   Summary      : The GNU libc libraries
+   URL          : http://www.gnu.org/software/glibc/
+   License      : LGPLv2+ and LGPLv2+ with exceptions and GPLv2+ and GPLv2+ with exceptions and BSD and Inner-Net and ISC and Public Domain and GFDL
+   Description  : The glibc package contains standard libraries which are used by
+                : multiple programs on the system. In order to save disk space and
+                : memory, as well as to make upgrading easier, common system code is
+                : kept in one place and shared between programs. This particular package
+                : contains the most important sets of shared libraries: the standard C
+                : library and the standard math library. Without these two libraries, a
+                : Linux system will not function.
+   ```
+
+4. 根据自身系统的glibc版本下载对应的mysql二进制包安装,大于2.28的直接下载2.28版本。
+
+   ![](./images/image-20260109110517591.png)
+
+### 配置mysql
+
+1. 解压mysql二进制文件。
+
+   ```
+   mkdir -p /usr/local/mysql && tar -xvf mysql-8.0.44-linux-glibc2.28-x86_64.tar.xz  -C /usr/local/mysql --strip-components=1
+   echo 'PATH=/usr/local/mysql/bin/:$PATH' >> /etc/profile
+   source /etc/profile
+   ```
+
+2. 准备配置文件my.cnf。
+
+   ```
+   cat > /etc/my.cnf <<-EOF
+   [mysqld]
+   datadir=/data/mysql
+   socket=/data/mysql/mysql.sock
+   log-error=/data/mysql/log/mysql.log
+   pid-file=/data/mysql/mysql.pid
+   
+   [client]
+   socket=/data/mysql/mysql.sock
+   EOF
+   ```
+
+3. 创建mysql数据目录，并添加mysql用户。
+
+   ```
+   useradd mysql
+   mkdir -p /data/mysql/log
+   chown -R mysql:mysql /data/mysql
+   ```
+
+4. 初始化数据库目录。
+
+   ```
+   /usr/local/mysql/bin/mysqld \
+     --initialize \
+     --user=mysql \
+     --datadir=/data/mysql
+   ```
+
+5. 添加mysql服务。
+
+   ```
+   cat > /lib/systemd/system/mysqld.service <<-EOF
+   [root@localhost data]# cat /lib/systemd/system/mysqld.service 
+   [Unit]
+   Description=MySQL Community Server
+   After=network.target
+   
+   [Service]
+   User=mysql
+   Group=mysql
+   Type=simple
+   RuntimeDirectory=mysqld
+   RuntimeDirectoryMode=0755
+   ExecStart=/usr/local/mysql/bin/mysqld --defaults-file=/etc/my.cnf 
+   LimitNOFILE=65535
+   Restart=on-failure
+   RestartSec=10
+   
+   [Install]
+   WantedBy=multi-user.target
+   EOF
+   
+   systemctl daemon-reload && systemctl enable --now mysqld
+   ```
+
+6. 修改mysql密码。
+
+   ```
+   ALTER USER 'root'@'localhost' IDENTIFIED BY '新密码xxx';
+   FLUSH PRIVILEGES;
+   ```
+
+   
+
