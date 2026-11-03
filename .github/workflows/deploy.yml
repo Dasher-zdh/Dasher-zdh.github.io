@@ -37,9 +37,8 @@ jobs:
 
       - name: Build project
         env:
-          # 如果你的仓库名是 <username>.github.io，改成 '/'；
-          # 普通仓库（如 myblog）保持 /${{ github.event.repository.name }}/ 即可
-          BASE_URL: /${{ github.event.repository.name }}/
+          # 该仓库为个人根主页 (Dasher-zdh.github.io)，基础路径为根目录 '/'
+          BASE_URL: /
         run: |
           npm run build
           # SPA 路由支持：复制 index.html 为 404.html，防止直接刷新深层路由返回 GitHub 404
