@@ -1,0 +1,403 @@
+/* ==========================================================================
+   TopBar — sticky header, IDE-style search
+   ========================================================================== */
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-topbar);
+  height: var(--topbar-height);
+  /* Opaque rather than backdrop-filtered — see the note in sidebar.css. */
+  background: var(--bg-chrome);
+  border-bottom: 1px solid var(--border);
+}
+
+.topbar__inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: 0 var(--space-5);
+}
+
+.topbar__spacer {
+  flex: 1;
+}
+
+/* ==========================================================================
+   Search
+   ========================================================================== */
+.topbar__search {
+  position: relative;
+  width: min(420px, 46vw);
+}
+
+.topbar__search-trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  height: 38px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: var(--bg-inset);
+  color: var(--text-tertiary);
+  transition:
+    border-color var(--dur-hover) var(--ease-out),
+    box-shadow var(--dur-hover) var(--ease-out),
+    background-color var(--dur-hover) var(--ease-out),
+    transform var(--dur-hover) var(--ease-out);
+}
+
+.topbar__search-trigger:hover {
+  border-color: var(--border-strong);
+  color: var(--text-secondary);
+}
+
+.topbar__search-trigger:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: var(--glow-accent);
+}
+
+.topbar__search-placeholder {
+  flex: 1;
+  text-align: left;
+  font-size: var(--text-sm);
+}
+
+.topbar__kbd {
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  color: var(--text-tertiary);
+  background: var(--bg-surface);
+}
+
+/* ---- Panel ---- */
+.topbar__panel {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  left: 0;
+  z-index: 20;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-strong);
+  background: var(--bg-surface-solid);
+  box-shadow: var(--shadow-panel);
+  overflow: hidden;
+  transform-origin: top center;
+  /* Entrance is driven by Motion; this covers the unmount case. */
+  animation: topbar-panel-in var(--dur-panel) var(--ease-out);
+}
+
+@keyframes topbar-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.topbar__panel-input {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--border);
+  color: var(--accent);
+}
+
+.topbar__panel-input input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: none;
+  font-size: var(--text-sm);
+  color: var(--text-primary);
+}
+
+.topbar__panel-input input::placeholder {
+  color: var(--text-tertiary);
+}
+
+.topbar__clear,
+.topbar__close {
+  display: grid;
+  place-items: center;
+  height: 24px;
+  min-width: 24px;
+  padding: 0 6px;
+  border-radius: var(--radius-sm);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--text-tertiary);
+  transition:
+    color var(--dur-hover) var(--ease-out),
+    background-color var(--dur-hover) var(--ease-out);
+}
+
+.topbar__clear:hover,
+.topbar__close:hover {
+  color: var(--accent-bright);
+  background: var(--accent-softer);
+}
+
+.topbar__panel-body {
+  max-height: min(420px, 60vh);
+  overflow-y: auto;
+}
+
+/* ---- History ---- */
+.topbar__history {
+  padding: var(--space-2) var(--space-2) var(--space-3);
+}
+
+.topbar__panel-section {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-2) var(--space-2);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.topbar__history-toggle,
+.topbar__history-clear {
+  margin-left: auto;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--text-tertiary);
+  transition: color var(--dur-hover) var(--ease-out);
+}
+
+.topbar__history-clear {
+  margin-left: var(--space-3);
+}
+
+.topbar__history-toggle:hover,
+.topbar__history-clear:hover {
+  color: var(--accent-bright);
+}
+
+.topbar__history-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.topbar__history-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  text-align: left;
+  transition:
+    color var(--dur-hover) var(--ease-out),
+    background-color var(--dur-hover) var(--ease-out);
+}
+
+.topbar__history-item:hover {
+  color: var(--accent-bright);
+  background: var(--accent-softer);
+}
+
+/* ---- Results ---- */
+.topbar__results {
+  list-style: none;
+  margin: 0;
+  padding: var(--space-2);
+}
+
+.topbar__result {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2px var(--space-3);
+  width: 100%;
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  text-align: left;
+  transition: background-color var(--dur-hover) var(--ease-out);
+}
+
+.topbar__result:hover {
+  background: var(--accent-softer);
+}
+
+.topbar__result-category {
+  grid-column: 1;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.topbar__result-title {
+  grid-column: 1;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.topbar__result-excerpt {
+  grid-column: 1 / -1;
+  font-size: var(--text-xs);
+  line-height: 1.55;
+  color: var(--text-tertiary);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.topbar__result-arrow {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: center;
+  color: var(--text-tertiary);
+  opacity: 0;
+  transform: translate(-4px, 4px);
+  transition:
+    opacity var(--dur-hover) var(--ease-out),
+    transform var(--dur-hover) var(--ease-out),
+    color var(--dur-hover) var(--ease-out);
+}
+
+.topbar__result:hover .topbar__result-arrow {
+  opacity: 1;
+  transform: translate(0, 0);
+  color: var(--accent);
+}
+
+.topbar__mark {
+  background: var(--accent-soft);
+  color: var(--accent-bright);
+  border-radius: 3px;
+  padding: 0 2px;
+}
+
+/* ---- Empty state ---- */
+.topbar__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-7) var(--space-5);
+  text-align: center;
+}
+
+.topbar__empty-art {
+  color: var(--accent);
+  opacity: 0.55;
+  margin-bottom: var(--space-2);
+}
+
+.topbar__empty-title {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.topbar__empty-desc {
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+}
+
+.topbar__empty-clear {
+  margin-top: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-strong);
+  font-size: var(--text-xs);
+  color: var(--accent);
+  transition:
+    background-color var(--dur-hover) var(--ease-out),
+    transform var(--dur-button) var(--ease-spring);
+}
+
+.topbar__empty-clear:hover {
+  background: var(--accent-soft);
+}
+
+.topbar__empty-clear:active {
+  transform: scale(0.94);
+}
+
+/* ==========================================================================
+   Theme toggle
+   ========================================================================== */
+.topbar__theme {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: var(--bg-inset);
+  color: var(--text-secondary);
+  overflow: hidden;
+  transition:
+    color var(--dur-hover) var(--ease-out),
+    border-color var(--dur-hover) var(--ease-out),
+    background-color var(--dur-hover) var(--ease-out);
+}
+
+.topbar__theme:hover {
+  color: var(--accent-bright);
+  border-color: var(--border-strong);
+  background: var(--accent-softer);
+}
+
+.topbar__theme-icon {
+  display: grid;
+  place-items: center;
+}
+
+@media (max-width: 900px) {
+  .topbar__inner {
+    padding: 0 var(--space-4);
+  }
+
+  .topbar__search {
+    width: auto;
+    flex: 1;
+  }
+
+  .topbar__search-placeholder {
+    display: none;
+  }
+
+  .topbar__search-trigger {
+    width: 38px;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .topbar__kbd {
+    display: none;
+  }
+
+  .topbar__panel {
+    position: fixed;
+    top: calc(var(--topbar-height) + 8px);
+    left: var(--space-3);
+    right: var(--space-3);
+  }
+}

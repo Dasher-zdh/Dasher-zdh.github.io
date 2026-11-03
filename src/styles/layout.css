@@ -1,0 +1,205 @@
+/* ==========================================================================
+   App shell layout
+   ========================================================================== */
+
+/* The sidebar sets this on <html> when it collapses, so the content slides
+   in with the rail instead of leaving a gap beside it. */
+:root[data-sidebar-collapsed='true'] {
+  --shell-offset: var(--sidebar-collapsed);
+}
+
+.shell {
+  position: relative;
+  z-index: var(--z-content);
+  /* Tracks the sidebar's live width so the content follows the collapse
+     instead of leaving a dead strip beside the 72px rail. */
+  margin-left: var(--shell-offset, var(--sidebar-width));
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: margin-left var(--dur-panel) var(--ease-out);
+}
+
+.shell__main {
+  position: relative;
+  flex: 1;
+  padding: var(--space-7) var(--space-6) var(--space-9);
+  width: 100%;
+  max-width: calc(var(--content-max) + var(--space-6) * 2);
+  margin: 0 auto;
+}
+
+.shell__page {
+  width: 100%;
+}
+
+.shell__page-body {
+  width: 100%;
+}
+
+/* An exiting route is taken out of flow so it cannot inflate the document
+   height while it fades out. */
+.shell__page-exiting {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+}
+
+.shell__footer {
+  padding: var(--space-5) var(--space-6);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.shell__footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+}
+
+.shell__footer-sep {
+  opacity: 0.5;
+}
+
+/* ==========================================================================
+   Shared section primitives
+   ========================================================================== */
+
+.section {
+  margin-bottom: var(--space-9);
+}
+
+.section__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+  flex-wrap: wrap;
+}
+
+.section__title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.section__title::before {
+  content: '';
+  width: 3px;
+  height: 20px;
+  border-radius: 2px;
+  background: linear-gradient(to bottom, var(--accent), var(--accent-cyan));
+  box-shadow: 0 0 10px rgba(45, 212, 191, 0.6);
+}
+
+.section__sub {
+  font-size: var(--text-sm);
+  color: var(--text-tertiary);
+}
+
+.section__more {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--accent);
+  transition: gap var(--dur-hover) var(--ease-out);
+}
+
+.section__more:hover {
+  gap: var(--space-3);
+}
+
+/* Grid helpers */
+.grid {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.grid--3 {
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+}
+
+.grid--2 {
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+/* ==========================================================================
+   Lazy-route fallback
+   ========================================================================== */
+
+.page-fallback {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-8) 0;
+}
+
+.page-fallback__bar {
+  display: block;
+  height: 14px;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(
+    90deg,
+    var(--bg-surface) 25%,
+    var(--accent-softer) 50%,
+    var(--bg-surface) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.4s linear infinite;
+}
+
+.page-fallback__bar:nth-child(1) {
+  width: 45%;
+  height: 28px;
+}
+
+.page-fallback__bar:nth-child(2) {
+  width: 100%;
+}
+
+.page-fallback__bar:nth-child(3) {
+  width: 75%;
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+@media (max-width: 900px) {
+  .shell {
+    margin-left: 0;
+  }
+
+  /* The rail is a drawer here, so the collapse offset does not apply. */
+  :root[data-sidebar-collapsed='true'] {
+    --shell-offset: 0px;
+  }
+
+  .shell__main {
+    padding: var(--space-5) var(--space-4) var(--space-8);
+  }
+
+  .shell__footer {
+    padding: var(--space-5) var(--space-4);
+  }
+}
+
+@media (max-width: 640px) {
+  .grid {
+    gap: var(--space-4);
+  }
+
+  .grid--3,
+  .grid--2 {
+    grid-template-columns: 1fr;
+  }
+}

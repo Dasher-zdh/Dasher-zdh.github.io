@@ -1,0 +1,52 @@
+/* ==========================================================================
+   Archive page
+   ========================================================================== */
+
+.archive__year {
+  margin-bottom: var(--space-8);
+}
+
+.archive__year-head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.archive__year-label {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--accent-bright);
+  letter-spacing: 0.02em;
+}
+
+.archive__year-count {
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+  padding: 2px 9px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border);
+  background: var(--bg-surface);
+}
+
+.archive__year-rule {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    var(--border-strong),
+    transparent
+  );
+}
+
+.archive__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-4);
+}
+
+@media (max-width: 640px) {
+  .archive__list {
+    grid-template-columns: 1fr;
+  }
+}

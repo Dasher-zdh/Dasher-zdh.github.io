@@ -1,0 +1,184 @@
+/* ==========================================================================
+   Home Page Layout (youhua.txt §1, §4, §5)
+   Desktop: Main Content (minmax(0, 1fr)) | Right Sidebar (290px fixed)
+   ========================================================================== */
+
+.home-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--right-sidebar-width);
+  gap: 24px;
+  width: 100%;
+  align-items: start;
+}
+
+/* ---- Center Main Column ---- */
+.home-main {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.home-section {
+  margin: 0;
+}
+
+.home-featured-head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.home-featured-icon {
+  color: var(--accent-primary);
+}
+
+/* ---- Article Grid: 3 columns (youhua.txt §4) ---- */
+.article-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+/* ---- Featured Grid: 3 columns (youhua.txt §5) ---- */
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+/* ---- Empty state ---- */
+.home__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-8) var(--space-5);
+  border-radius: var(--radius-lg);
+  border: 1px dashed var(--border-primary);
+  background: var(--bg-card);
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+  grid-column: 1 / -1;
+}
+
+.home__empty button {
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-accent);
+  color: var(--accent-primary);
+  background: var(--accent-softer);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color var(--dur-hover) var(--ease-out);
+}
+
+.home__empty button:hover {
+  background: var(--accent-soft);
+}
+
+/* ==========================================================================
+   Right Sidebar (290px sticky)
+   ========================================================================== */
+.home-right-rail {
+  width: var(--right-sidebar-width);
+  position: sticky;
+  top: calc(var(--topbar-height) + 16px);
+  z-index: 10;
+}
+
+.home-right-rail__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.home-widget {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-5);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-primary);
+  background: var(--bg-card);
+  box-shadow: var(--shadow-card);
+}
+
+/* Profile Card inside rail doesn't need redundant outer box-shadow if styled as card */
+.home-right-rail .profile {
+  box-shadow: var(--shadow-card);
+}
+
+.home-widget__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--border-primary);
+}
+
+.home-widget__title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.home-widget__clear {
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  background: var(--accent-softer);
+  border: 1px solid var(--border-accent);
+  color: var(--accent-primary);
+  font-size: 11px;
+  cursor: pointer;
+  transition: background var(--dur-hover) var(--ease-out);
+}
+
+.home-widget__clear:hover {
+  background: var(--accent-soft);
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+
+/* Medium Screens (< 1240px): collapse right sidebar below or 2-column articles */
+@media (max-width: 1240px) {
+  .home-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .home-right-rail {
+    position: static;
+    width: 100%;
+  }
+
+  .home-right-rail__inner {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+}
+
+/* Tablet Screens (< 960px): 2 columns article grid */
+@media (max-width: 960px) {
+  .article-grid,
+  .featured-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Mobile Screens (< 640px): 1 column article grid */
+@media (max-width: 640px) {
+  .article-grid,
+  .featured-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-right-rail__inner {
+    grid-template-columns: 1fr;
+  }
+}

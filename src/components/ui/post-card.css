@@ -1,0 +1,263 @@
+/* ==========================================================================
+   Tilt card primitive
+   ========================================================================== */
+
+.tilt {
+  height: 100%;
+}
+
+.tilt__inner {
+  position: relative;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+.tilt__glow {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--dur-card) var(--ease-out);
+}
+
+.tilt:hover .tilt__glow {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   Post card
+   ========================================================================== */
+
+.post-card {
+  height: 100%;
+}
+
+.post-card__tilt {
+  height: 100%;
+}
+
+.post-card__link {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid var(--border-primary);
+  background: var(--bg-card);
+  box-shadow: var(--shadow-card);
+  transition:
+    transform var(--dur-card) var(--ease-out),
+    border-color var(--dur-card) var(--ease-out),
+    box-shadow var(--dur-card) var(--ease-out),
+    background-color var(--dur-card) var(--ease-out);
+}
+
+/* ---- Hover: lift -4px, brighten border, spread shadow (youhua.txt §6) ---- */
+.post-card__link:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-accent);
+  background: var(--bg-card-hover);
+  box-shadow: 0 14px 30px -10px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(22, 216, 197, 0.35);
+}
+
+/* ---- Active: press feedback ---- */
+.post-card__link:active {
+  transform: translateY(-2px) scale(0.99);
+  transition-duration: var(--dur-button);
+}
+
+/* ---- Media (youhua.txt §4: 16:9, ~150px height) ---- */
+.post-card__media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  height: 150px;
+  width: 100%;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border-primary);
+  background: var(--bg-inset);
+}
+
+.post-card__cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 520ms var(--ease-out);
+}
+
+.post-card__link:hover .post-card__cover {
+  transform: scale(1.04);
+}
+
+.post-card__category {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 3px 9px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--accent-primary);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-accent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1;
+}
+
+[data-theme='light'] .post-card__category {
+  background: rgba(255, 255, 255, 0.82);
+}
+
+/* ---- Body (youhua.txt §4: padding 16px, title 16~18px, excerpt 13~14px) ---- */
+.post-card__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+}
+
+.post-card__title {
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--text-primary);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin: 0;
+  transition: color var(--dur-card) var(--ease-out);
+}
+
+.post-card__link:hover .post-card__title {
+  color: var(--accent-primary);
+}
+
+.post-card__excerpt {
+  flex: 1;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin: 0;
+}
+
+.post-card__meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 6px;
+  font-size: 11.5px;
+  color: var(--text-muted);
+}
+
+.post-card__meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.post-card__date {
+  letter-spacing: 0.04em;
+}
+
+.post-card__dot {
+  opacity: 0.5;
+}
+
+.post-card__read {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.post-card__tag {
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  font-size: 10px;
+  color: var(--text-tertiary);
+  background: var(--bg-inset);
+  border: 1px solid var(--border-subtle);
+  transition:
+    color var(--dur-hover) var(--ease-out),
+    border-color var(--dur-hover) var(--ease-out);
+}
+
+.post-card__link:hover .post-card__tag {
+  color: var(--accent);
+  border-color: var(--border-strong);
+}
+
+/* ---- Reading arrow (fades in on hover) ---- */
+.post-card__arrow {
+  position: absolute;
+  right: var(--space-4);
+  bottom: var(--space-4);
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: var(--accent-bright);
+  background: var(--accent-soft);
+  border: 1px solid var(--border-strong);
+  opacity: 0;
+  transform: translateX(-6px);
+  transition:
+    opacity var(--dur-card) var(--ease-out),
+    transform var(--dur-card) var(--ease-out);
+}
+
+.post-card__link:hover .post-card__arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ==========================================================================
+   Variants
+   ========================================================================== */
+.post-card[data-variant='compact'] .post-card__media {
+  aspect-ratio: 16 / 10;
+}
+
+.post-card[data-variant='compact'] .post-card__body {
+  padding: var(--space-4);
+  gap: var(--space-1);
+}
+
+.post-card[data-variant='compact'] .post-card__title {
+  font-size: var(--text-base);
+}
+
+.post-card[data-variant='compact'] .post-card__excerpt {
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+.post-card[data-variant='featured'] .post-card__link {
+  border-color: var(--border-accent);
+  background: linear-gradient(135deg, rgba(22, 216, 197, 0.05), transparent 60%), var(--bg-card);
+  box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.8), 0 0 20px -8px rgba(22, 216, 197, 0.25);
+}
+
+.post-card[data-variant='featured'] .post-card__link:hover {
+  transform: translateY(-5px);
+  border-color: #3ff2df;
+  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.95), 0 0 24px -4px rgba(22, 216, 197, 0.5);
+}
+
+.post-card[data-variant='featured'] .post-card__media {
+  height: 160px;
+}

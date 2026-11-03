@@ -1,0 +1,169 @@
+/* ==========================================================================
+   Profile card
+   ========================================================================== */
+
+.profile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 24px 20px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-primary);
+  background: var(--bg-card);
+  box-shadow: var(--shadow-card);
+  text-align: center;
+  overflow: hidden;
+}
+
+/* ---- Avatar (youhua.txt §5: 88~100px, teal ring) ---- */
+.profile__avatar-wrap {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  display: grid;
+  place-items: center;
+  margin-bottom: var(--space-2);
+}
+
+.profile__ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-top-color: var(--accent-primary);
+  border-right-color: rgba(22, 216, 197, 0.4);
+  animation: spin-slow 9s linear infinite;
+  filter: drop-shadow(0 0 8px rgba(22, 216, 197, 0.5));
+}
+
+.profile__ring::after {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border-radius: 50%;
+  border: 1px dashed rgba(22, 216, 197, 0.25);
+}
+
+.profile__avatar {
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--border-accent);
+  transition: transform var(--dur-card) var(--ease-spring);
+}
+
+.profile__avatar-wrap:hover .profile__avatar {
+  transform: scale(1.07);
+}
+
+.profile__status {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--bg-surface-solid);
+  animation: breathe 3.2s ease-in-out infinite;
+}
+
+.profile__status::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  border: 1px solid var(--accent);
+  animation: pulse-ring 2.6s ease-out infinite;
+}
+
+/* ---- Text ---- */
+.profile__name {
+  font-size: var(--text-xl);
+  font-weight: 700;
+}
+
+.profile__title {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-primary);
+}
+
+.profile__bio {
+  max-width: 280px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+/* ---- Stats ---- */
+.profile__stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-2);
+  width: 100%;
+  margin: var(--space-2) 0;
+  padding: var(--space-3) 0;
+  border-top: 1px solid var(--border-primary);
+  border-bottom: 1px solid var(--border-primary);
+}
+
+.profile__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.profile__stat-label {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.profile__stat-value {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--accent-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- Socials ---- */
+.profile__socials {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.profile__social {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-primary);
+  background: var(--bg-inset);
+  transition:
+    transform var(--dur-hover) var(--ease-spring),
+    color var(--dur-hover) var(--ease-out),
+    border-color var(--dur-hover) var(--ease-out),
+    background-color var(--dur-hover) var(--ease-out),
+    box-shadow var(--dur-hover) var(--ease-out);
+}
+
+.profile__social:hover {
+  transform: translateY(-3px);
+  color: var(--accent-primary);
+  border-color: var(--border-accent);
+  background: var(--accent-softer);
+  box-shadow: 0 0 16px -4px rgba(22, 216, 197, 0.5);
+}
+
+.profile__social:active {
+  transform: translateY(-1px) scale(0.92);
+}

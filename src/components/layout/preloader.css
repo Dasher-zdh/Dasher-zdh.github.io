@@ -1,0 +1,60 @@
+/* ==========================================================================
+   Preloader
+   ========================================================================== */
+
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-preloader);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  background: var(--bg-deep);
+}
+
+.preloader__logo {
+  color: var(--accent);
+  filter: drop-shadow(0 0 12px rgba(45, 212, 191, 0.5));
+}
+
+.preloader__path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: preloader-draw 1.05s var(--ease-out) forwards;
+}
+
+@keyframes preloader-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.preloader__fill {
+  opacity: 0;
+  animation: preloader-fill 0.5s var(--ease-out) 0.85s forwards;
+}
+
+@keyframes preloader-fill {
+  to {
+    opacity: 0.16;
+  }
+}
+
+.preloader__text {
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  color: var(--text-tertiary);
+  animation: preloader-blink 1.4s ease-in-out infinite;
+}
+
+@keyframes preloader-blink {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}

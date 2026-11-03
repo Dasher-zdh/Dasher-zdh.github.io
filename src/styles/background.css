@@ -1,0 +1,158 @@
+/* ==========================================================================
+   Background FX — tech grid + scan light
+   ========================================================================== */
+
+.tech-grid {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  --mx: 50%;
+  --my: 50%;
+  /* The mask lives on the static parent so the animated child never has to
+     repaint to re-evaluate it. */
+  mask-image: radial-gradient(
+    ellipse 80% 70% at 50% 40%,
+    #000 30%,
+    transparent 100%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 80% 70% at 50% 40%,
+    #000 30%,
+    transparent 100%
+  );
+}
+
+/* Oversized so the translate loop never exposes an edge. */
+.tech-grid__lines {
+  position: absolute;
+  top: -60px;
+  left: -60px;
+  width: calc(100% + 120px);
+  height: calc(100% + 120px);
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 48px 48px;
+  /* transform instead of background-position: the compositor can animate this
+     without repainting the (full-viewport) layer every frame. */
+  animation: grid-drift 18s linear infinite;
+  will-change: transform;
+}
+
+/* When the machine cannot keep up, the drift slows down rather than
+   stopping: the grid still reads as alive, but it costs far less per frame
+   because a slower transform means fewer style updates. */
+.tech-grid[data-quality='medium'] .tech-grid__lines {
+  animation-duration: 30s;
+}
+
+.tech-grid[data-quality='low'] .tech-grid__lines {
+  animation-duration: 60s;
+}
+
+.tech-grid__lines::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, var(--grid-line-strong) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line-strong) 1px, transparent 1px);
+  background-size: 192px 192px;
+  opacity: 0.55;
+}
+
+/* Local brightness boost under the cursor — no large light orb. */
+.tech-grid__spotlight {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    320px circle at var(--mx) var(--my),
+    rgba(45, 212, 191, 0.1),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity var(--dur-card) var(--ease-out);
+}
+
+.tech-grid:hover .tech-grid__spotlight {
+  opacity: 1;
+}
+
+/* Slow teal scan sweep. */
+.tech-grid__scan {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 140px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(45, 212, 191, 0.06) 45%,
+    rgba(45, 212, 191, 0.12) 50%,
+    rgba(45, 212, 191, 0.06) 55%,
+    transparent
+  );
+  animation: scan-y 14s linear infinite;
+  will-change: transform;
+}
+
+/* ==========================================================================
+   Ambient background shell
+   ========================================================================== */
+.bg-shell {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-bg);
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.bg-shell__base {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      ellipse 90% 60% at 18% 8%,
+      rgba(45, 212, 191, 0.07),
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 70% 50% at 88% 92%,
+      rgba(34, 211, 238, 0.05),
+      transparent 65%
+    ),
+    var(--bg-base);
+}
+
+.bg-shell__stars {
+  position: absolute;
+  inset: 0;
+  opacity: var(--star-opacity);
+}
+
+.bg-shell__grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.75;
+}
+
+/* Subtle vignette to keep focus on content. */
+.bg-shell__vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 120% 100% at 50% 50%,
+    transparent 40%,
+    rgba(0, 0, 0, 0.45) 100%
+  );
+}
+
+[data-theme='light'] .bg-shell__vignette {
+  background: radial-gradient(
+    ellipse 120% 100% at 50% 50%,
+    transparent 45%,
+    rgba(15, 42, 61, 0.12) 100%
+  );
+}

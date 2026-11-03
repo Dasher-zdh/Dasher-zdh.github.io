@@ -1,0 +1,210 @@
+/* ==========================================================================
+   三藏の博客 — Design Tokens
+   Source: ui-ux-pro-max (style: dark-mode-oled) + spec: 暗黑科技风 / 青绿强调
+   ========================================================================== */
+
+:root {
+  /* ---- Typography: ui-ux-pro-max "Developer Mono" (JetBrains Mono + IBM Plex Sans) */
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: 1.75rem;
+  --text-3xl: 2.25rem;
+  --text-4xl: 3rem;
+  --text-5xl: 4rem;
+
+  --leading-tight: 1.2;
+  --leading-snug: 1.4;
+  --leading-normal: 1.6;
+  --leading-relaxed: 1.8;
+
+  /* ---- Spacing scale (density 5/10 → standard) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+
+  /* ---- Radii */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-pill: 999px;
+
+  /* ---- Layout (youhua.txt §1) */
+  --sidebar-width: 190px;
+  --sidebar-collapsed: 72px;
+  --right-sidebar-width: 290px;
+  --topbar-height: 60px;
+  --content-max: 1720px;
+  --reading-max: 760px;
+
+  /* ---- Motion tokens (xuqiu.txt §15) */
+  --dur-hover: 180ms;
+  --dur-button: 150ms;
+  --dur-card: 260ms;
+  --dur-panel: 300ms;
+  --dur-page: 320ms;
+  --dur-loop: 16s;
+  --dur-breathe: 4s;
+
+  /* ---- Easing (natural curves, never linear) */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ---- Z-index layers */
+  --z-bg: 0;
+  --z-content: 1;
+  --z-sticky: 100;
+  --z-sidebar: 200;
+  --z-topbar: 250;
+  --z-overlay: 300;
+  --z-lightbox: 400;
+  --z-preloader: 500;
+}
+
+/* ==========================================================================
+   DARK THEME (default) — OLED deep space + teal accent
+   ========================================================================== */
+:root,
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  /* Surfaces (youhua.txt §2) */
+  --bg-primary: #060a0f;
+  --bg-secondary: #0a1118;
+  --bg-card: #101923;
+  --bg-card-hover: #15232c;
+
+  --bg-base: #060a0f;
+  --bg-deep: #03050a;
+  --bg-elevated: #0a1118;
+  --bg-surface: rgba(16, 25, 35, 0.76);
+  --bg-surface-solid: #101923;
+  --bg-glass: rgba(10, 17, 24, 0.65);
+  --bg-inset: rgba(4, 7, 12, 0.6);
+
+  /* Fixed chrome */
+  --bg-chrome: rgba(6, 10, 15, 0.95);
+  --bg-chrome-line: rgba(22, 216, 197, 0.12);
+
+  /* Ink (youhua.txt §2) */
+  --text-primary: #e8f0f2;
+  --text-secondary: #9aaab5;
+  --text-muted: #687985;
+  --text-tertiary: #687985;
+  --text-inverse: #060a0f;
+
+  /* Accent — 青绿 (teal: youhua.txt §2) */
+  --accent-primary: #16d8c5;
+  --accent-secondary: #28a99a;
+  --accent: #16d8c5;
+  --accent-bright: #3ff2df;
+  --accent-deep: #0f8a7e;
+  --accent-soft: rgba(22, 216, 197, 0.14);
+  --accent-softer: rgba(22, 216, 197, 0.08);
+  --accent-cyan: #22d3ee;
+  --accent-on: #03201d;
+
+  /* Lines (youhua.txt §2) */
+  --border-primary: rgba(130, 170, 180, 0.18);
+  --border-accent: rgba(22, 216, 197, 0.45);
+  --border: rgba(130, 170, 180, 0.18);
+  --border-strong: rgba(22, 216, 197, 0.45);
+  --border-subtle: rgba(130, 170, 180, 0.1);
+
+  /* Glow / shadow */
+  --glow-accent: rgba(22, 216, 197, 0.12);
+  --glow-soft: 0 0 40px -12px rgba(22, 216, 197, 0.35);
+  --shadow-card: 0 4px 20px -8px rgba(0, 0, 0, 0.7);
+  --shadow-card-hover: 0 16px 36px -12px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(22, 216, 197, 0.3);
+  --shadow-panel: 0 24px 60px -20px rgba(0, 0, 0, 0.85);
+
+  /* Backdrop */
+  --backdrop: rgba(2, 4, 9, 0.85);
+  --scrim: rgba(2, 4, 9, 0.92);
+
+  /* Particles / grid */
+  --star-opacity: 0.85;
+  --grid-line: rgba(22, 216, 197, 0.05);
+  --grid-line-strong: rgba(22, 216, 197, 0.09);
+  --scan-color: rgba(22, 216, 197, 0.45);
+
+  --selection-bg: rgba(22, 216, 197, 0.3);
+  --selection-fg: #f0fffd;
+}
+
+/* ==========================================================================
+   LIGHT THEME
+   ========================================================================== */
+[data-theme='light'] {
+  color-scheme: light;
+
+  /* Surfaces (aligned with tokens for cards and sections) */
+  --bg-primary: #f4f7fa;
+  --bg-secondary: #eef2f6;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f0fdfa;
+
+  --bg-base: #f4f7fa;
+  --bg-deep: #e9eef4;
+  --bg-elevated: #ffffff;
+  --bg-surface: rgba(255, 255, 255, 0.88);
+  --bg-surface-solid: #ffffff;
+  --bg-glass: rgba(255, 255, 255, 0.75);
+  --bg-inset: rgba(15, 23, 42, 0.04);
+
+  --bg-chrome: rgba(255, 255, 255, 0.95);
+  --bg-chrome-line: rgba(15, 118, 110, 0.12);
+
+  --text-primary: #0d1723;
+  --text-secondary: #405366;
+  --text-tertiary: #64778c;
+  --text-muted: #64778c;
+  --text-inverse: #ffffff;
+
+  /* Teal for AA contrast on light surfaces */
+  --accent-primary: #0f766e;
+  --accent-secondary: #14b8a6;
+  --accent: #0f766e;
+  --accent-bright: #0d9488;
+  --accent-deep: #134e4a;
+  --accent-soft: rgba(15, 118, 110, 0.12);
+  --accent-softer: rgba(15, 118, 110, 0.06);
+  --accent-cyan: #0284c7;
+  --accent-on: #ffffff;
+
+  --border-primary: rgba(15, 42, 61, 0.12);
+  --border-accent: rgba(15, 118, 110, 0.35);
+  --border: rgba(15, 42, 61, 0.12);
+  --border-strong: rgba(15, 118, 110, 0.4);
+  --border-subtle: rgba(15, 42, 61, 0.07);
+
+  --glow-accent: 0 0 0 1px rgba(15, 118, 110, 0.25), 0 0 20px -6px rgba(15, 118, 110, 0.2);
+  --glow-soft: 0 0 40px -14px rgba(15, 118, 110, 0.25);
+  --shadow-card: 0 4px 18px -6px rgba(15, 42, 61, 0.08), 0 1px 3px rgba(15, 42, 61, 0.05);
+  --shadow-card-hover: 0 14px 32px -12px rgba(15, 42, 61, 0.15), 0 0 0 1px rgba(15, 118, 110, 0.3);
+  --shadow-panel: 0 24px 56px -22px rgba(15, 42, 61, 0.2);
+
+  --backdrop: rgba(240, 244, 248, 0.8);
+  --scrim: rgba(226, 233, 240, 0.92);
+
+  --star-opacity: 0.15;
+  --grid-line: rgba(15, 118, 110, 0.05);
+  --grid-line-strong: rgba(15, 118, 110, 0.1);
+  --scan-color: rgba(15, 118, 110, 0.3);
+
+  --selection-bg: rgba(15, 118, 110, 0.2);
+  --selection-fg: #04201c;
+}
