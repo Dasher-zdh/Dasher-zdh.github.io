@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { motion } from 'motion/react'
+import { marked } from 'marked'
 import { ArrowLeft } from '@phosphor-icons/react/dist/icons/ArrowLeft'
 import { Clock } from '@phosphor-icons/react/dist/icons/Clock'
 import { Eye } from '@phosphor-icons/react/dist/icons/Eye'
@@ -304,7 +305,12 @@ function Block({
 
   return (
     <motion.div ref={ref} className="post-detail__block" {...motionProps}>
-      {block.type === 'p' && <p className="post-detail__p">{block.text}</p>}
+      {block.type === 'p' && (
+        <p
+          className="post-detail__p"
+          dangerouslySetInnerHTML={{ __html: marked.parseInline(block.text) as string }}
+        />
+      )}
 
       {block.type === 'h2' && (
         <h2 id={block.id} className="post-detail__h2">
@@ -320,13 +326,19 @@ function Block({
       )}
 
       {block.type === 'quote' && (
-        <blockquote className="post-detail__quote">{block.text}</blockquote>
+        <blockquote
+          className="post-detail__quote"
+          dangerouslySetInnerHTML={{ __html: marked.parseInline(block.text) as string }}
+        />
       )}
 
       {block.type === 'list' && (
         <ul className="post-detail__list">
-          {block.items.map((item) => (
-            <li key={item}>{item}</li>
+          {block.items.map((item, idx) => (
+            <li
+              key={idx}
+              dangerouslySetInnerHTML={{ __html: marked.parseInline(item) as string }}
+            />
           ))}
         </ul>
       )}
