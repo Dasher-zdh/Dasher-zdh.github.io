@@ -178,7 +178,7 @@ export default function PostDetailPage() {
           </motion.div>
 
           {/* ---- Body: sections fade in as they scroll ---- */}
-          <div className="post-detail__body">
+          <div ref={articleRef as React.RefObject<HTMLDivElement>} className="post-detail__body">
             {post.body.map((block, i) => (
               <Block
                 key={i}
