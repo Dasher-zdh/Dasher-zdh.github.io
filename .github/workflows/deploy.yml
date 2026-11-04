@@ -41,8 +41,6 @@ jobs:
           BASE_URL: /
         run: |
           npm run build
-          # SPA 路由支持：复制 index.html 为 404.html，防止直接刷新深层路由返回 GitHub 404
-          cp dist/index.html dist/404.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
