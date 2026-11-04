@@ -100,7 +100,7 @@ export default function App() {
 
         <footer className="shell__footer">
           <div className="shell__footer-inner">
-            <span className="mono">© 2026 三藏の博客</span>
+            <span className="mono">© 2026 冬海の博客</span>
             <span className="shell__footer-sep" aria-hidden="true">
               ·
             </span>

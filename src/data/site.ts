@@ -4,12 +4,12 @@
  */
 
 export const site = {
-  title: '三藏の博客',
-  titleEn: 'Sanzang Dev Journal',
+  title: '冬海の博客',
+  titleEn: 'zdh Dev Journal',
   tagline: '在代码与宇宙之间，记录工程实践的每一次跃迁。',
   description:
     '个人技术博客，聚焦前端架构、性能优化、可视化与 AI 工程实践。深空科技风，含完整交互动画系统。',
-  author: '三藏',
+  author: '冬海',
   authorTitle: 'Frontend Engineer · Creative Technologist',
   url: 'https://sanzang.dev',
   email: 'donghaiad@163.com',
@@ -21,7 +21,7 @@ export const navItems = [
   { to: '/posts', label: '文章', icon: 'Article', hint: '浏览全部文章' },
   { to: '/archive', label: '归档', icon: 'ClockCounterClockwise', hint: '按时间归档' },
   { to: '/tags', label: '标签', icon: 'Hash', hint: '按标签浏览' },
-  { to: '/about', label: '关于', icon: 'User', hint: '关于三藏' },
+  { to: '/about', label: '关于', icon: 'User', hint: '关于冬海' },
 ] as const
 
 export const socialLinks = [

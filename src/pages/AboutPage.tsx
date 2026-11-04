@@ -73,7 +73,7 @@ export default function AboutPage() {
           <section className="about__section">
             <h2 className="section__title">我做了什么</h2>
             <p className="about__lead">
-              我是三藏，一个把「动效」当作工程问题来解的前端工程师。
+              我是冬海，一个把「动效」当作工程问题来解的前端工程师。
             </p>
             <p className="about__p">
               大多数人做动画时依赖直觉——调一个时长，看看顺不顺。这个博客里的每一篇文章几乎都在做同一件事：
