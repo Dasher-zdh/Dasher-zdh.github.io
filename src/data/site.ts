@@ -28,7 +28,7 @@ export const socialLinks = [
   { label: 'GitHub', icon: 'GithubLogo', href: 'https://github.com/Dasher-zdh' },
   { label: 'Twitter', icon: 'TwitterLogo', href: 'https://twitter.com' },
   { label: 'RSS', icon: 'Rss', href: '/rss.xml' },
-  { label: 'Email', icon: 'Envelope', href: 'mailto:hi@sanzang.dev' },
+  { label: 'Email', icon: 'Envelope', href: 'mailto:donghaiad@163.com' },
 ] as const
 
 export const stats = [

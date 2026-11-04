@@ -86,7 +86,7 @@ function SocialRow() {
     { label: 'GitHub', icon: 'GithubLogo', href: 'https://github.com' },
     { label: 'Twitter', icon: 'TwitterLogo', href: 'https://twitter.com' },
     { label: 'RSS', icon: 'Rss', href: '/rss.xml' },
-    { label: 'Email', icon: 'Envelope', href: 'mailto:hi@sanzang.dev' },
+    { label: 'Email', icon: 'Envelope', href: 'mailto:donghaiad@163.com' },
   ]
 
   return (
