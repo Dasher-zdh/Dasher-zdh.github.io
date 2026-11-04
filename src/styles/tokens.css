@@ -75,36 +75,36 @@
 }
 
 /* ==========================================================================
-   DARK THEME (default) — OLED deep space + teal accent
+   DARK THEME (default) — 石墨岩黑 (Obsidian/Slate Dark) + 青绿科技强调
    ========================================================================== */
 :root,
 [data-theme='dark'] {
   color-scheme: dark;
 
-  /* Surfaces (youhua.txt §2) */
-  --bg-primary: #060a0f;
-  --bg-secondary: #0a1118;
-  --bg-card: #101923;
-  --bg-card-hover: #15232c;
+  /* Surfaces — 纯正岩石黑/深石墨色系，告别藏青偏蓝底 */
+  --bg-primary: #0a0a0c;
+  --bg-secondary: #111114;
+  --bg-card: #16161a;
+  --bg-card-hover: #1c1c22;
 
-  --bg-base: #060a0f;
-  --bg-deep: #03050a;
-  --bg-elevated: #0a1118;
-  --bg-surface: rgba(16, 25, 35, 0.76);
-  --bg-surface-solid: #101923;
-  --bg-glass: rgba(10, 17, 24, 0.65);
-  --bg-inset: rgba(4, 7, 12, 0.6);
+  --bg-base: #0a0a0c;
+  --bg-deep: #060608;
+  --bg-elevated: #111114;
+  --bg-surface: rgba(22, 22, 26, 0.85);
+  --bg-surface-solid: #16161a;
+  --bg-glass: rgba(17, 17, 20, 0.72);
+  --bg-inset: rgba(6, 6, 8, 0.65);
 
   /* Fixed chrome */
-  --bg-chrome: rgba(6, 10, 15, 0.95);
+  --bg-chrome: rgba(10, 10, 12, 0.95);
   --bg-chrome-line: rgba(22, 216, 197, 0.12);
 
-  /* Ink (youhua.txt §2) */
-  --text-primary: #e8f0f2;
-  --text-secondary: #9aaab5;
-  --text-muted: #687985;
-  --text-tertiary: #687985;
-  --text-inverse: #060a0f;
+  /* Ink */
+  --text-primary: #edf0f2;
+  --text-secondary: #9da3ab;
+  --text-muted: #6b7280;
+  --text-tertiary: #6b7280;
+  --text-inverse: #0a0a0c;
 
   /* Accent — 青绿 (teal: youhua.txt §2) */
   --accent-primary: #16d8c5;
@@ -117,28 +117,28 @@
   --accent-cyan: #22d3ee;
   --accent-on: #03201d;
 
-  /* Lines (youhua.txt §2) */
-  --border-primary: rgba(130, 170, 180, 0.18);
+  /* Lines — 岩黑低饱和度边缘线 */
+  --border-primary: rgba(255, 255, 255, 0.08);
   --border-accent: rgba(22, 216, 197, 0.45);
-  --border: rgba(130, 170, 180, 0.18);
+  --border: rgba(255, 255, 255, 0.08);
   --border-strong: rgba(22, 216, 197, 0.45);
-  --border-subtle: rgba(130, 170, 180, 0.1);
+  --border-subtle: rgba(255, 255, 255, 0.04);
 
   /* Glow / shadow */
   --glow-accent: rgba(22, 216, 197, 0.12);
   --glow-soft: 0 0 40px -12px rgba(22, 216, 197, 0.35);
-  --shadow-card: 0 4px 20px -8px rgba(0, 0, 0, 0.7);
-  --shadow-card-hover: 0 16px 36px -12px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(22, 216, 197, 0.3);
-  --shadow-panel: 0 24px 60px -20px rgba(0, 0, 0, 0.85);
+  --shadow-card: 0 4px 20px -8px rgba(0, 0, 0, 0.8);
+  --shadow-card-hover: 0 16px 36px -12px rgba(0, 0, 0, 0.95), 0 0 0 1px rgba(22, 216, 197, 0.3);
+  --shadow-panel: 0 24px 60px -20px rgba(0, 0, 0, 0.9);
 
   /* Backdrop */
-  --backdrop: rgba(2, 4, 9, 0.85);
-  --scrim: rgba(2, 4, 9, 0.92);
+  --backdrop: rgba(6, 6, 8, 0.88);
+  --scrim: rgba(4, 4, 6, 0.95);
 
   /* Particles / grid */
   --star-opacity: 0.85;
-  --grid-line: rgba(22, 216, 197, 0.05);
-  --grid-line-strong: rgba(22, 216, 197, 0.09);
+  --grid-line: rgba(255, 255, 255, 0.025);
+  --grid-line-strong: rgba(22, 216, 197, 0.08);
   --scan-color: rgba(22, 216, 197, 0.45);
 
   --selection-bg: rgba(22, 216, 197, 0.3);
