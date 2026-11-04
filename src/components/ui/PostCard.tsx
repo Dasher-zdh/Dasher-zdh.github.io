@@ -48,13 +48,22 @@ function PostCardBase({ post, index = 0, variant = 'default', animateIn = true }
           aria-label={`阅读文章：${post.title}`}
         >
           <div className="post-card__media">
-            <CoverArt
-              className="post-card__cover"
-              hue={post.cover.hue}
-              hue2={post.cover.hue2}
-              pattern={post.cover.pattern}
-              seed={post.slug}
-            />
+            {post.cover.image ? (
+              <img
+                src={post.cover.image}
+                alt={post.title}
+                className="post-card__cover"
+                loading="lazy"
+              />
+            ) : (
+              <CoverArt
+                className="post-card__cover"
+                hue={post.cover.hue}
+                hue2={post.cover.hue2}
+                pattern={post.cover.pattern}
+                seed={post.slug}
+              />
+            )}
             <span className="post-card__category">{post.category}</span>
           </div>
 

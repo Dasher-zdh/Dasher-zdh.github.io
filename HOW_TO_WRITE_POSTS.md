@@ -46,6 +46,7 @@ hue2: 198
 | `readTime` | number | 否 | 预估阅读分钟数（不填会自动按字数计算） |
 | `views` | number | 否 | 初始阅读量计数（不填会自动生成） |
 | `featured` | boolean | 否 | 是否置顶/精选（`true` 会出现在首页精选区） |
+| `image` / `coverImage` | string | 否 | **自定义真实图片路径/网络URL**（设置后优先展示图片，替代默认的生成艺术封面） |
 | `pattern` | string | 否 | 封面生成艺术类型：`orbit` / `wave` / `circuit` / `layer` / `security` / `cloud` / `ai` / `editor` |
 | `hue` | number | 否 | 封面主色相（0~360），默认 172（青绿） |
 | `hue2` | number | 否 | 封面副色相（0~360），默认 198（天蓝） |

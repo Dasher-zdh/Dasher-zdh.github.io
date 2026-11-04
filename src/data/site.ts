@@ -12,7 +12,7 @@ export const site = {
   author: '三藏',
   authorTitle: 'Frontend Engineer · Creative Technologist',
   url: 'https://sanzang.dev',
-  email: 'hi@sanzang.dev',
+  email: 'donghaiad@163.com',
   location: 'Shanghai, China',
 } as const
 
@@ -25,7 +25,7 @@ export const navItems = [
 ] as const
 
 export const socialLinks = [
-  { label: 'GitHub', icon: 'GithubLogo', href: 'https://github.com' },
+  { label: 'GitHub', icon: 'GithubLogo', href: 'https://github.com/Dasher-zdh' },
   { label: 'Twitter', icon: 'TwitterLogo', href: 'https://twitter.com' },
   { label: 'RSS', icon: 'Rss', href: '/rss.xml' },
   { label: 'Email', icon: 'Envelope', href: 'mailto:hi@sanzang.dev' },

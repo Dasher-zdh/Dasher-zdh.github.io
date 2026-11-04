@@ -100,7 +100,7 @@ export default function PostDetailPage() {
   const related = relatedPosts(post.slug, 3)
 
   return (
-    <article className="post-detail">
+    <article ref={articleRef as React.RefObject<HTMLElement>} className="post-detail">
       {/* ---- Reading progress bar (xuqiu.txt §10) ---- */}
       <div className="post-detail__progress" aria-hidden="true">
         <div ref={barRef} className="post-detail__progress-fill" />
@@ -159,18 +159,26 @@ export default function PostDetailPage() {
               ease: [0.22, 1, 0.36, 1],
             }}
           >
-            <CoverArt
-              className="post-detail__cover-art"
-              hue={post.cover.hue}
-              hue2={post.cover.hue2}
-              pattern={post.cover.pattern}
-              seed={post.slug}
-              detailed
-            />
+            {post.cover.image ? (
+              <img
+                src={post.cover.image}
+                alt={post.title}
+                className="post-detail__cover-img"
+              />
+            ) : (
+              <CoverArt
+                className="post-detail__cover-art"
+                hue={post.cover.hue}
+                hue2={post.cover.hue2}
+                pattern={post.cover.pattern}
+                seed={post.slug}
+                detailed
+              />
+            )}
           </motion.div>
 
           {/* ---- Body: sections fade in as they scroll ---- */}
-          <div ref={articleRef as React.RefObject<HTMLDivElement>} className="post-detail__body">
+          <div className="post-detail__body">
             {post.body.map((block, i) => (
               <Block
                 key={i}

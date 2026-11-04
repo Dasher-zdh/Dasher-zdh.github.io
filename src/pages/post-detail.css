@@ -136,6 +136,13 @@
   aspect-ratio: 21 / 9;
 }
 
+.post-detail__cover-img {
+  width: 100%;
+  aspect-ratio: 21 / 9;
+  object-fit: cover;
+  display: block;
+}
+
 /* ---- Body ---- */
 .post-detail__body {
   font-size: var(--text-base);

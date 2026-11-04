@@ -26,7 +26,12 @@ export interface Post {
   readTime: number
   views: number
   featured?: boolean
-  cover: { hue: number; hue2: number; pattern: CoverPattern }
+  cover: {
+    image?: string
+    hue: number
+    hue2: number
+    pattern: CoverPattern
+  }
   body: ArticleBlock[]
 }
 
@@ -132,6 +137,7 @@ function loadAllPosts(): Post[] {
       views: Number(data.views) || Math.floor(Math.random() * 5000 + 1000),
       featured: Boolean(data.featured),
       cover: {
+        image: data.image || data.coverImage || undefined,
         pattern: (data.pattern as CoverPattern) || defaultPattern,
         hue: Number(data.hue) || 172,
         hue2: Number(data.hue2) || 198,
