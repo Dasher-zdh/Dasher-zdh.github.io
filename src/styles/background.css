@@ -68,7 +68,7 @@
   inset: 0;
   background: radial-gradient(
     320px circle at var(--mx) var(--my),
-    rgba(45, 212, 191, 0.1),
+    rgba(255, 255, 255, 0.05),
     transparent 70%
   );
   opacity: 0;
@@ -79,7 +79,7 @@
   opacity: 1;
 }
 
-/* Slow teal scan sweep. */
+/* Subtle silver-white scan sweep */
 .tech-grid__scan {
   position: absolute;
   left: 0;
@@ -89,9 +89,9 @@
   background: linear-gradient(
     to bottom,
     transparent,
-    rgba(45, 212, 191, 0.06) 45%,
-    rgba(45, 212, 191, 0.12) 50%,
-    rgba(45, 212, 191, 0.06) 55%,
+    rgba(255, 255, 255, 0.02) 45%,
+    rgba(255, 255, 255, 0.04) 50%,
+    rgba(255, 255, 255, 0.02) 55%,
     transparent
   );
   animation: scan-y 14s linear infinite;
@@ -115,12 +115,12 @@
   background:
     radial-gradient(
       ellipse 90% 60% at 18% 8%,
-      rgba(45, 212, 191, 0.07),
+      rgba(255, 255, 255, 0.025),
       transparent 60%
     ),
     radial-gradient(
       ellipse 70% 50% at 88% 92%,
-      rgba(34, 211, 238, 0.05),
+      rgba(255, 255, 255, 0.015),
       transparent 65%
     ),
     var(--bg-base);

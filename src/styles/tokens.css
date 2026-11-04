@@ -75,7 +75,7 @@
 }
 
 /* ==========================================================================
-   DARK THEME (default) — 石墨岩黑 (Obsidian/Slate Dark) + 青绿科技强调
+   DARK THEME (default) — 石墨岩黑 (Obsidian/Slate Dark) + 极简高亮白/钛银强调 (Vercel/Linear Style)
    ========================================================================== */
 :root,
 [data-theme='dark'] {
@@ -97,7 +97,7 @@
 
   /* Fixed chrome */
   --bg-chrome: rgba(10, 10, 12, 0.95);
-  --bg-chrome-line: rgba(22, 216, 197, 0.12);
+  --bg-chrome-line: rgba(255, 255, 255, 0.08);
 
   /* Ink */
   --text-primary: #edf0f2;
@@ -106,29 +106,29 @@
   --text-tertiary: #6b7280;
   --text-inverse: #0a0a0c;
 
-  /* Accent — 青绿 (teal: youhua.txt §2) */
-  --accent-primary: #16d8c5;
-  --accent-secondary: #28a99a;
-  --accent: #16d8c5;
-  --accent-bright: #3ff2df;
-  --accent-deep: #0f8a7e;
-  --accent-soft: rgba(22, 216, 197, 0.14);
-  --accent-softer: rgba(22, 216, 197, 0.08);
-  --accent-cyan: #22d3ee;
-  --accent-on: #03201d;
+  /* Accent — 极简纯白与钛银 (Vercel / Linear 黑白灰极客质感) */
+  --accent-primary: #ffffff;
+  --accent-secondary: #d1d5db;
+  --accent: #ffffff;
+  --accent-bright: #ffffff;
+  --accent-deep: #9ca3af;
+  --accent-soft: rgba(255, 255, 255, 0.12);
+  --accent-softer: rgba(255, 255, 255, 0.06);
+  --accent-cyan: #e5e7eb;
+  --accent-on: #0a0a0c;
 
   /* Lines — 岩黑低饱和度边缘线 */
   --border-primary: rgba(255, 255, 255, 0.08);
-  --border-accent: rgba(22, 216, 197, 0.45);
+  --border-accent: rgba(255, 255, 255, 0.28);
   --border: rgba(255, 255, 255, 0.08);
-  --border-strong: rgba(22, 216, 197, 0.45);
+  --border-strong: rgba(255, 255, 255, 0.35);
   --border-subtle: rgba(255, 255, 255, 0.04);
 
   /* Glow / shadow */
-  --glow-accent: rgba(22, 216, 197, 0.12);
-  --glow-soft: 0 0 40px -12px rgba(22, 216, 197, 0.35);
+  --glow-accent: rgba(255, 255, 255, 0.1);
+  --glow-soft: 0 0 32px -8px rgba(255, 255, 255, 0.15);
   --shadow-card: 0 4px 20px -8px rgba(0, 0, 0, 0.8);
-  --shadow-card-hover: 0 16px 36px -12px rgba(0, 0, 0, 0.95), 0 0 0 1px rgba(22, 216, 197, 0.3);
+  --shadow-card-hover: 0 16px 36px -12px rgba(0, 0, 0, 0.95), 0 0 0 1px rgba(255, 255, 255, 0.2);
   --shadow-panel: 0 24px 60px -20px rgba(0, 0, 0, 0.9);
 
   /* Backdrop */
@@ -138,11 +138,11 @@
   /* Particles / grid */
   --star-opacity: 0.85;
   --grid-line: rgba(255, 255, 255, 0.025);
-  --grid-line-strong: rgba(22, 216, 197, 0.08);
-  --scan-color: rgba(22, 216, 197, 0.45);
+  --grid-line-strong: rgba(255, 255, 255, 0.06);
+  --scan-color: rgba(255, 255, 255, 0.2);
 
-  --selection-bg: rgba(22, 216, 197, 0.3);
-  --selection-fg: #f0fffd;
+  --selection-bg: rgba(255, 255, 255, 0.22);
+  --selection-fg: #ffffff;
 }
 
 /* ==========================================================================
@@ -152,13 +152,13 @@
   color-scheme: light;
 
   /* Surfaces (aligned with tokens for cards and sections) */
-  --bg-primary: #f4f7fa;
-  --bg-secondary: #eef2f6;
+  --bg-primary: #f8fafc;
+  --bg-secondary: #f1f5f9;
   --bg-card: #ffffff;
-  --bg-card-hover: #f0fdfa;
+  --bg-card-hover: #f8fafc;
 
-  --bg-base: #f4f7fa;
-  --bg-deep: #e9eef4;
+  --bg-base: #f8fafc;
+  --bg-deep: #e2e8f0;
   --bg-elevated: #ffffff;
   --bg-surface: rgba(255, 255, 255, 0.88);
   --bg-surface-solid: #ffffff;
@@ -166,45 +166,45 @@
   --bg-inset: rgba(15, 23, 42, 0.04);
 
   --bg-chrome: rgba(255, 255, 255, 0.95);
-  --bg-chrome-line: rgba(15, 118, 110, 0.12);
+  --bg-chrome-line: rgba(0, 0, 0, 0.08);
 
-  --text-primary: #0d1723;
-  --text-secondary: #405366;
-  --text-tertiary: #64778c;
-  --text-muted: #64778c;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-tertiary: #64748b;
+  --text-muted: #64748b;
   --text-inverse: #ffffff;
 
-  /* Teal for AA contrast on light surfaces */
-  --accent-primary: #0f766e;
-  --accent-secondary: #14b8a6;
-  --accent: #0f766e;
-  --accent-bright: #0d9488;
-  --accent-deep: #134e4a;
-  --accent-soft: rgba(15, 118, 110, 0.12);
-  --accent-softer: rgba(15, 118, 110, 0.06);
-  --accent-cyan: #0284c7;
+  /* Pure black/charcoal accent for light surfaces (Vercel style) */
+  --accent-primary: #0f172a;
+  --accent-secondary: #334155;
+  --accent: #0f172a;
+  --accent-bright: #000000;
+  --accent-deep: #1e293b;
+  --accent-soft: rgba(15, 23, 42, 0.08);
+  --accent-softer: rgba(15, 23, 42, 0.04);
+  --accent-cyan: #475569;
   --accent-on: #ffffff;
 
-  --border-primary: rgba(15, 42, 61, 0.12);
-  --border-accent: rgba(15, 118, 110, 0.35);
-  --border: rgba(15, 42, 61, 0.12);
-  --border-strong: rgba(15, 118, 110, 0.4);
-  --border-subtle: rgba(15, 42, 61, 0.07);
+  --border-primary: rgba(15, 23, 42, 0.1);
+  --border-accent: rgba(15, 23, 42, 0.3);
+  --border: rgba(15, 23, 42, 0.1);
+  --border-strong: rgba(15, 23, 42, 0.4);
+  --border-subtle: rgba(15, 23, 42, 0.05);
 
-  --glow-accent: 0 0 0 1px rgba(15, 118, 110, 0.25), 0 0 20px -6px rgba(15, 118, 110, 0.2);
-  --glow-soft: 0 0 40px -14px rgba(15, 118, 110, 0.25);
-  --shadow-card: 0 4px 18px -6px rgba(15, 42, 61, 0.08), 0 1px 3px rgba(15, 42, 61, 0.05);
-  --shadow-card-hover: 0 14px 32px -12px rgba(15, 42, 61, 0.15), 0 0 0 1px rgba(15, 118, 110, 0.3);
-  --shadow-panel: 0 24px 56px -22px rgba(15, 42, 61, 0.2);
+  --glow-accent: 0 0 0 1px rgba(15, 23, 42, 0.15), 0 0 20px -6px rgba(15, 23, 42, 0.1);
+  --glow-soft: 0 0 40px -14px rgba(15, 23, 42, 0.15);
+  --shadow-card: 0 4px 18px -6px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.04);
+  --shadow-card-hover: 0 14px 32px -12px rgba(15, 23, 42, 0.12), 0 0 0 1px rgba(15, 23, 42, 0.25);
+  --shadow-panel: 0 24px 56px -22px rgba(15, 23, 42, 0.15);
 
-  --backdrop: rgba(240, 244, 248, 0.8);
-  --scrim: rgba(226, 233, 240, 0.92);
+  --backdrop: rgba(248, 250, 252, 0.8);
+  --scrim: rgba(241, 245, 249, 0.92);
 
-  --star-opacity: 0.15;
-  --grid-line: rgba(15, 118, 110, 0.05);
-  --grid-line-strong: rgba(15, 118, 110, 0.1);
-  --scan-color: rgba(15, 118, 110, 0.3);
+  --star-opacity: 0.12;
+  --grid-line: rgba(15, 23, 42, 0.04);
+  --grid-line-strong: rgba(15, 23, 42, 0.08);
+  --scan-color: rgba(15, 23, 42, 0.15);
 
-  --selection-bg: rgba(15, 118, 110, 0.2);
-  --selection-fg: #04201c;
+  --selection-bg: rgba(15, 23, 42, 0.15);
+  --selection-fg: #000000;
 }

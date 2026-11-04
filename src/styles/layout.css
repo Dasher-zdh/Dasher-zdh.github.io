@@ -97,8 +97,8 @@
   width: 3px;
   height: 20px;
   border-radius: 2px;
-  background: linear-gradient(to bottom, var(--accent), var(--accent-cyan));
-  box-shadow: 0 0 10px rgba(45, 212, 191, 0.6);
+  background: linear-gradient(to bottom, #ffffff, #94a3b8);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
 }
 
 .section__sub {

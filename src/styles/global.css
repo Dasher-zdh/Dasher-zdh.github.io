@@ -110,7 +110,7 @@ ol {
 /* ---- Scrollbar ---- */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(45, 212, 191, 0.32) transparent;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
 }
 
 ::-webkit-scrollbar {
@@ -121,13 +121,13 @@ ol {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(45, 212, 191, 0.24);
+  background: rgba(255, 255, 255, 0.18);
   border-radius: var(--radius-pill);
   border: 3px solid transparent;
   background-clip: content-box;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(45, 212, 191, 0.46);
+  background: rgba(255, 255, 255, 0.35);
   background-clip: content-box;
 }
 
@@ -147,7 +147,7 @@ ol {
 }
 
 .text-gradient {
-  background: linear-gradient(120deg, var(--accent-bright), var(--accent-cyan));
+  background: linear-gradient(120deg, #ffffff, #94a3b8);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

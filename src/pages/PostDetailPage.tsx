@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { motion } from 'motion/react'
+import { motion, AnimatePresence } from 'motion/react'
 import { marked } from 'marked'
 import { ArrowLeft } from '@phosphor-icons/react/dist/icons/ArrowLeft'
+import { ArrowUp } from '@phosphor-icons/react/dist/icons/ArrowUp'
 import { Clock } from '@phosphor-icons/react/dist/icons/Clock'
 import { Eye } from '@phosphor-icons/react/dist/icons/Eye'
 import { CalendarBlank } from '@phosphor-icons/react/dist/icons/CalendarBlank'
@@ -10,6 +11,7 @@ import { CaretRight } from '@phosphor-icons/react/dist/icons/CaretRight'
 import { getPost, relatedPosts, type ArticleBlock } from '../data/posts'
 import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion'
 import { useScrollProgress } from '../hooks/useScrollProgress'
+import { useReadingMemory } from '../hooks/useReadingMemory'
 import { CoverArt } from '../components/visuals/CoverArt'
 import { Lightbox, type LightboxImage } from '../components/ui/Lightbox'
 import { CodeBlock } from '../components/ui/CodeBlock'
@@ -29,6 +31,7 @@ export default function PostDetailPage() {
   const { ref: articleRef, barRef } = useScrollProgress<HTMLElement>()
   const [activeId, setActiveId] = useState<string>('')
   const [tocOpen, setTocOpen] = useState(true)
+  const { savedPosition, restore, dismiss } = useReadingMemory(slug)
   const [lightbox, setLightbox] = useState<{ images: LightboxImage[]; index: number } | null>(
     null,
   )
@@ -250,6 +253,39 @@ export default function PostDetailPage() {
           </aside>
         )}
       </div>
+
+      {/* ---- Reading memory toast banner ---- */}
+      <AnimatePresence>
+        {savedPosition && (
+          <motion.div
+            className="reading-memory-toast"
+            initial={{ opacity: 0, y: 24, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 16, scale: 0.95 }}
+            transition={{ type: 'spring', damping: 22, stiffness: 260 }}
+          >
+            <div className="reading-memory-toast__content">
+              <span className="reading-memory-toast__text">检测到上次阅读记录</span>
+              <button
+                type="button"
+                className="reading-memory-toast__btn"
+                onClick={restore}
+              >
+                <ArrowUp size={14} aria-hidden="true" />
+                继续阅读
+              </button>
+              <button
+                type="button"
+                className="reading-memory-toast__close"
+                onClick={dismiss}
+                aria-label="关闭"
+              >
+                ✕
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {lightbox && (
         <Lightbox

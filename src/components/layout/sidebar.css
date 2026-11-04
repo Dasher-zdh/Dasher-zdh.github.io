@@ -60,7 +60,7 @@
   width: 36px;
   height: 36px;
   color: var(--accent);
-  filter: drop-shadow(0 0 8px rgba(45, 212, 191, 0.45));
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.35));
 }
 
 .sidebar__logo-path {
@@ -199,12 +199,13 @@
   inset: 0;
   z-index: 0;
   border-radius: var(--radius-md);
-  background: linear-gradient(
-    100deg,
-    rgba(45, 212, 191, 0.22),
-    rgba(34, 211, 238, 0.08) 70%
-  );
-  box-shadow: inset 0 0 0 1px rgba(45, 212, 191, 0.28);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.16);
+}
+
+[data-theme='light'] .sidebar__active-bg {
+  background: rgba(15, 23, 42, 0.06);
+  box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.12);
 }
 
 /* Left indicator line */
@@ -217,9 +218,13 @@
   height: 0;
   border-radius: 0 3px 3px 0;
   background: var(--accent);
-  box-shadow: 0 0 10px rgba(45, 212, 191, 0.8);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
   transform: translateY(-50%);
   transition: height var(--dur-card) var(--ease-out);
+}
+
+[data-theme='light'] .sidebar__indicator {
+  box-shadow: 0 0 8px rgba(15, 23, 42, 0.3);
 }
 
 .sidebar__link[aria-current='page'] .sidebar__indicator {

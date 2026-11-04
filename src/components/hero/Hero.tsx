@@ -6,6 +6,7 @@ import { Compass } from '@phosphor-icons/react/dist/icons/Compass'
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
 import { usePointerPosition } from '../../hooks/usePointerPosition'
 import { useAdaptiveQuality } from '../../hooks/useAdaptiveQuality'
+import { Magnetic } from '../ui/Magnetic'
 import './hero.css'
 
 export function Hero() {
@@ -45,23 +46,23 @@ export function Hero() {
         >
           <defs>
             <radialGradient id="planet-grad" cx="38%" cy="32%" r="65%">
-              <stop offset="0%" stopColor="#2ae0cd" stopOpacity="0.8" />
-              <stop offset="35%" stopColor="#14a395" stopOpacity="0.5" />
-              <stop offset="70%" stopColor="#0a2a28" stopOpacity="0.3" />
+              <stop offset="0%" stopColor="#ffffff" stopOpacity="0.85" />
+              <stop offset="35%" stopColor="#d1d5db" stopOpacity="0.5" />
+              <stop offset="70%" stopColor="#4b5563" stopOpacity="0.3" />
               <stop offset="100%" stopColor="#111114" stopOpacity="0.95" />
             </radialGradient>
             <radialGradient id="atmosphere-glow" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#16d8c5" stopOpacity="0.16" />
-              <stop offset="60%" stopColor="#16d8c5" stopOpacity="0.04" />
+              <stop offset="0%" stopColor="#ffffff" stopOpacity="0.12" />
+              <stop offset="60%" stopColor="#ffffff" stopOpacity="0.03" />
               <stop offset="100%" stopColor="transparent" stopOpacity="0" />
             </radialGradient>
             <linearGradient id="ring-grad" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stopColor="#3ff2df" stopOpacity="0.5" />
-              <stop offset="50%" stopColor="#16d8c5" stopOpacity="0.15" />
-              <stop offset="100%" stopColor="#22d3ee" stopOpacity="0.5" />
+              <stop offset="0%" stopColor="#ffffff" stopOpacity="0.5" />
+              <stop offset="50%" stopColor="#9ca3af" stopOpacity="0.2" />
+              <stop offset="100%" stopColor="#e5e7eb" stopOpacity="0.4" />
             </linearGradient>
             <linearGradient id="ray-grad" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stopColor="#16d8c5" stopOpacity="0.4" />
+              <stop offset="0%" stopColor="#ffffff" stopOpacity="0.3" />
               <stop offset="100%" stopColor="transparent" stopOpacity="0" />
             </linearGradient>
           </defs>
@@ -106,16 +107,16 @@ export function Hero() {
 
           {/* Sci-Fi HUD Coordinates & Telemetry */}
           <g className="hero-banner__hud" opacity="0.65" fontFamily="var(--font-mono)">
-            <circle cx="340" cy="170" r="126" stroke="#16d8c5" strokeWidth="0.6" strokeDasharray="2 4" />
-            <line x1="200" y1="170" x2="480" y2="170" stroke="#16d8c5" strokeWidth="0.4" strokeDasharray="3 3" />
-            <line x1="340" y1="30" x2="340" y2="310" stroke="#16d8c5" strokeWidth="0.4" strokeDasharray="3 3" />
+            <circle cx="340" cy="170" r="126" stroke="#9ca3af" strokeWidth="0.6" strokeDasharray="2 4" />
+            <line x1="200" y1="170" x2="480" y2="170" stroke="#9ca3af" strokeWidth="0.4" strokeDasharray="3 3" />
+            <line x1="340" y1="30" x2="340" y2="310" stroke="#9ca3af" strokeWidth="0.4" strokeDasharray="3 3" />
 
             {/* Target Reticles */}
-            <circle cx="270" cy="115" r="5" stroke="#3ff2df" strokeWidth="0.8" fill="none" />
-            <circle cx="270" cy="115" r="1.5" fill="#3ff2df" />
-            <text x="282" y="119" fill="#16d8c5" fontSize="9" letterSpacing="0.1em">ORBIT // 42.8°N</text>
+            <circle cx="270" cy="115" r="5" stroke="#ffffff" strokeWidth="0.8" fill="none" />
+            <circle cx="270" cy="115" r="1.5" fill="#ffffff" />
+            <text x="282" y="119" fill="#e5e7eb" fontSize="9" letterSpacing="0.1em">ORBIT // 42.8°N</text>
 
-            <rect x="375" y="220" width="76" height="18" rx="3" stroke="#16d8c5" strokeWidth="0.6" fill="#111114" fillOpacity="0.85" />
+            <rect x="375" y="220" width="76" height="18" rx="3" stroke="#9ca3af" strokeWidth="0.6" fill="#111114" fillOpacity="0.85" />
             <text x="382" y="233" fill="#9da3ab" fontSize="8" letterSpacing="0.08em">WARP ENGINE: OK</text>
           </g>
         </svg>
@@ -158,15 +159,20 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: reduced ? 0 : 0.45, delay: reduced ? 0 : 0.24 }}
         >
-          <Link to="/posts" className="btn btn--primary">
-            <Compass size={17} weight="bold" aria-hidden="true" />
-            <span>开始阅读</span>
-            <ArrowRight size={16} className="btn__arrow" aria-hidden="true" />
-          </Link>
-          <Link to="/about" className="btn btn--ghost">
-            <Code size={17} aria-hidden="true" />
-            <span>关于我</span>
-          </Link>
+          <Magnetic strength={0.32}>
+            <Link to="/posts" className="btn btn--primary">
+              <Compass size={17} weight="bold" aria-hidden="true" />
+              <span>开始阅读</span>
+              <ArrowRight size={16} className="btn__arrow" aria-hidden="true" />
+            </Link>
+          </Magnetic>
+
+          <Magnetic strength={0.24}>
+            <Link to="/about" className="btn btn--ghost">
+              <Code size={17} aria-hidden="true" />
+              <span>关于我</span>
+            </Link>
+          </Magnetic>
         </motion.div>
       </div>
     </section>

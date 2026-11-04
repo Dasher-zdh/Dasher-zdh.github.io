@@ -16,7 +16,7 @@
 
 .preloader__logo {
   color: var(--accent);
-  filter: drop-shadow(0 0 12px rgba(45, 212, 191, 0.5));
+  filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.4));
 }
 
 .preloader__path {

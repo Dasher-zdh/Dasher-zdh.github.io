@@ -17,12 +17,12 @@
   font-weight: 700;
   line-height: 1;
   letter-spacing: -0.04em;
-  background: linear-gradient(160deg, var(--accent-bright), var(--accent-cyan));
+  background: linear-gradient(160deg, #ffffff, #94a3b8);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   opacity: 0.85;
-  filter: drop-shadow(0 0 32px rgba(45, 212, 191, 0.3));
+  filter: drop-shadow(0 0 32px rgba(255, 255, 255, 0.2));
 }
 
 .notfound h1 {

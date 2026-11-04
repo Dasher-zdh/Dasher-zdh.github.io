@@ -188,8 +188,8 @@ export function Starfield({
             const dy = a.y - b.y
             const distSq = dx * dx + dy * dy
             if (distSq < 6400) {
-              const alpha = (1 - Math.sqrt(distSq) / 80) * 0.18
-              ctx.strokeStyle = `rgba(45, 212, 191, ${alpha})`
+              const alpha = (1 - Math.sqrt(distSq) / 80) * 0.15
+              ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`
               ctx.beginPath()
               ctx.moveTo(a.x, a.y)
               ctx.lineTo(b.x, b.y)
@@ -274,8 +274,8 @@ export function Starfield({
           }
 
           const grad = ctx.createLinearGradient(m.x, m.y, m.x + m.len, m.y - m.len * 0.8)
-          grad.addColorStop(0, `rgba(226, 255, 252, ${0.75 * m.life})`)
-          grad.addColorStop(1, 'rgba(45, 212, 191, 0)')
+          grad.addColorStop(0, `rgba(255, 255, 255, ${0.8 * m.life})`)
+          grad.addColorStop(1, 'rgba(255, 255, 255, 0)')
           ctx.strokeStyle = grad
           ctx.lineWidth = 1.2
           ctx.beginPath()

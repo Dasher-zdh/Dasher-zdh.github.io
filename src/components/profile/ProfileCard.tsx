@@ -4,6 +4,7 @@ import { useCountUp } from '../../hooks/useCountUp'
 import { useInView } from '../../hooks/useInView'
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
 import { site, stats } from '../../data/site'
+import { Magnetic } from '../ui/Magnetic'
 import './profile-card.css'
 
 /**
@@ -31,15 +32,15 @@ export function ProfileCard() {
           <svg viewBox="0 0 64 64" width="100%" height="100%">
             <defs>
               <linearGradient id="avatar-fill" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stopColor="hsl(172 70% 30%)" />
-                <stop offset="100%" stopColor="hsl(200 65% 18%)" />
+                <stop offset="0%" stopColor="#374151" />
+                <stop offset="100%" stopColor="#18181b" />
               </linearGradient>
             </defs>
             <rect width="64" height="64" rx="16" fill="url(#avatar-fill)" />
             <path
               d="M32 14 L48 48 L32 39 L16 48 Z"
               fill="none"
-              stroke="hsl(172 90% 70%)"
+              stroke="#ffffff"
               strokeWidth="2.4"
               strokeLinejoin="round"
             />
@@ -92,19 +93,20 @@ function SocialRow() {
   return (
     <div className="profile__socials">
       {links.map((l) => (
-        <a
-          key={l.label}
-          href={l.href}
-          className="profile__social"
-          target={l.href.startsWith('http') ? '_blank' : undefined}
-          rel={l.href.startsWith('http') ? 'noreferrer noopener' : undefined}
-          aria-label={l.label}
-          title={l.label}
-        >
-          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
-            <path d={icons[l.icon]} fill="currentColor" />
-          </svg>
-        </a>
+        <Magnetic key={l.label} strength={0.4}>
+          <a
+            href={l.href}
+            className="profile__social"
+            target={l.href.startsWith('http') ? '_blank' : undefined}
+            rel={l.href.startsWith('http') ? 'noreferrer noopener' : undefined}
+            aria-label={l.label}
+            title={l.label}
+          >
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
+              <path d={icons[l.icon]} fill="currentColor" />
+            </svg>
+          </a>
+        </Magnetic>
       ))}
     </div>
   )
