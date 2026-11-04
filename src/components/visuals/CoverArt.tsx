@@ -71,17 +71,17 @@ export function CoverArt({
     >
       <defs>
         <linearGradient id={`${uid}-bg`} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor={`hsl(${hue} 68% 16%)`} />
-          <stop offset="55%" stopColor={`hsl(${(hue + hue2) / 2} 62% 11%)`} />
-          <stop offset="100%" stopColor={`hsl(${hue2} 70% 8%)`} />
+          <stop offset="0%" stopColor="#18181c" />
+          <stop offset="55%" stopColor="#131316" />
+          <stop offset="100%" stopColor="#0c0c0e" />
         </linearGradient>
         <radialGradient id={`${uid}-glow`} cx="72%" cy="18%" r="70%">
-          <stop offset="0%" stopColor={`hsl(${hue} 90% 62%)`} stopOpacity="0.34" />
-          <stop offset="100%" stopColor={`hsl(${hue} 90% 62%)`} stopOpacity="0" />
+          <stop offset="0%" stopColor={`hsl(${hue} 80% 55%)`} stopOpacity="0.16" />
+          <stop offset="100%" stopColor={`hsl(${hue} 80% 55%)`} stopOpacity="0" />
         </radialGradient>
         <linearGradient id={`${uid}-line`} x1="0" y1="0" x2="1" y2="0">
           <stop offset="0%" stopColor={`hsl(${hue} 85% 65%)`} stopOpacity="0" />
-          <stop offset="50%" stopColor={`hsl(${hue} 90% 70%)`} stopOpacity="0.9" />
+          <stop offset="50%" stopColor={`hsl(${hue} 90% 70%)`} stopOpacity="0.7" />
           <stop offset="100%" stopColor={`hsl(${hue2} 85% 65%)`} stopOpacity="0" />
         </linearGradient>
         <pattern

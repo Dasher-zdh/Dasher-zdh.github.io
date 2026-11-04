@@ -45,20 +45,20 @@ export function Hero() {
         >
           <defs>
             <radialGradient id="planet-grad" cx="38%" cy="32%" r="65%">
-              <stop offset="0%" stopColor="#3ff2df" stopOpacity="0.85" />
-              <stop offset="35%" stopColor="#16d8c5" stopOpacity="0.6" />
-              <stop offset="70%" stopColor="#0a4645" stopOpacity="0.4" />
-              <stop offset="100%" stopColor="#04121a" stopOpacity="0.95" />
+              <stop offset="0%" stopColor="#2ae0cd" stopOpacity="0.8" />
+              <stop offset="35%" stopColor="#14a395" stopOpacity="0.5" />
+              <stop offset="70%" stopColor="#0a2a28" stopOpacity="0.3" />
+              <stop offset="100%" stopColor="#111114" stopOpacity="0.95" />
             </radialGradient>
             <radialGradient id="atmosphere-glow" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#16d8c5" stopOpacity="0.28" />
-              <stop offset="60%" stopColor="#16d8c5" stopOpacity="0.08" />
+              <stop offset="0%" stopColor="#16d8c5" stopOpacity="0.16" />
+              <stop offset="60%" stopColor="#16d8c5" stopOpacity="0.04" />
               <stop offset="100%" stopColor="transparent" stopOpacity="0" />
             </radialGradient>
             <linearGradient id="ring-grad" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stopColor="#3ff2df" stopOpacity="0.7" />
-              <stop offset="50%" stopColor="#16d8c5" stopOpacity="0.2" />
-              <stop offset="100%" stopColor="#22d3ee" stopOpacity="0.8" />
+              <stop offset="0%" stopColor="#3ff2df" stopOpacity="0.5" />
+              <stop offset="50%" stopColor="#16d8c5" stopOpacity="0.15" />
+              <stop offset="100%" stopColor="#22d3ee" stopOpacity="0.5" />
             </linearGradient>
             <linearGradient id="ray-grad" x1="0" y1="0" x2="1" y2="0">
               <stop offset="0%" stopColor="#16d8c5" stopOpacity="0.4" />
@@ -115,8 +115,8 @@ export function Hero() {
             <circle cx="270" cy="115" r="1.5" fill="#3ff2df" />
             <text x="282" y="119" fill="#16d8c5" fontSize="9" letterSpacing="0.1em">ORBIT // 42.8°N</text>
 
-            <rect x="375" y="220" width="76" height="18" rx="3" stroke="#16d8c5" strokeWidth="0.6" fill="#060a0f" fillOpacity="0.75" />
-            <text x="382" y="233" fill="#9aaab5" fontSize="8" letterSpacing="0.08em">WARP ENGINE: OK</text>
+            <rect x="375" y="220" width="76" height="18" rx="3" stroke="#16d8c5" strokeWidth="0.6" fill="#111114" fillOpacity="0.85" />
+            <text x="382" y="233" fill="#9da3ab" fontSize="8" letterSpacing="0.08em">WARP ENGINE: OK</text>
           </g>
         </svg>
       </motion.div>
