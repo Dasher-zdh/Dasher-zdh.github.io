@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Giscus Comments Area
+   Giscus / GitHub Discussions Comments Area
    ========================================================================== */
 
 .post-comments {
@@ -10,19 +10,30 @@
 
 .post-comments__header {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   margin-bottom: var(--space-5);
   flex-wrap: wrap;
   gap: var(--space-2);
 }
 
+.post-comments__title-wrap {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text-primary);
+}
+
+.post-comments__title-wrap .section__title {
+  margin: 0;
+}
+
 .post-comments__badge {
   font-size: 11px;
   color: var(--text-tertiary);
-  padding: 2px 8px;
-  border-radius: var(--radius-sm);
-  background: var(--bg-inset);
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
 }
 
@@ -31,15 +42,76 @@
   border-radius: var(--radius-md);
 }
 
-.post-comments__placeholder {
+.post-comments__card {
+  border-radius: var(--radius-lg);
+  background: var(--bg-surface-solid);
+  border: 1px solid var(--border-strong);
+  overflow: hidden;
+  box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.4);
+}
+
+.post-comments__card-inner {
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: var(--space-6);
+  gap: var(--space-5);
+  padding: var(--space-5) var(--space-6);
+  flex-wrap: wrap;
+}
+
+.post-comments__icon-box {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
   border-radius: var(--radius-md);
-  border: 1px dashed var(--border-subtle);
-  background: var(--bg-surface);
-  color: var(--text-tertiary);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-accent);
+  color: var(--text-primary);
+}
+
+.post-comments__card-content {
+  flex: 1;
+  min-width: 240px;
+}
+
+.post-comments__card-title {
+  margin: 0 0 6px 0;
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.post-comments__card-desc {
+  margin: 0;
   font-size: var(--text-xs);
-  letter-spacing: 0.04em;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.post-comments__card-action {
+  white-space: nowrap;
+  flex-shrink: 0;
+  height: 40px;
+  padding: 0 16px;
+  gap: 8px;
+}
+
+.post-comments__card-hint {
+  padding: 10px var(--space-6);
+  background: var(--bg-inset);
+  border-top: 1px solid var(--border-subtle);
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+
+@media (max-width: 640px) {
+  .post-comments__card-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .post-comments__card-action {
+    width: 100%;
+    justify-content: center;
+  }
 }
