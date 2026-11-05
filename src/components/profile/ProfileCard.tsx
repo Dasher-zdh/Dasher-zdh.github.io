@@ -3,7 +3,7 @@ import { motion } from 'motion/react'
 import { useCountUp } from '../../hooks/useCountUp'
 import { useInView } from '../../hooks/useInView'
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
-import { site, stats } from '../../data/site'
+import { site, stats, socialLinks } from '../../data/site'
 import { Magnetic } from '../ui/Magnetic'
 import './profile-card.css'
 
@@ -83,16 +83,9 @@ function SocialRow() {
       'M3 5.5A1.5 1.5 0 0 1 4.5 4h15A1.5 1.5 0 0 1 21 5.5v13a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 18.5v-13Zm2.2.5 6.8 5.1 6.8-5.1H5.2ZM19 7.4l-6.4 4.8a1 1 0 0 1-1.2 0L5 7.4v10.1h14V7.4Z',
   }
 
-  const links = [
-    { label: 'GitHub', icon: 'GithubLogo', href: 'https://github.com' },
-    { label: 'Twitter', icon: 'TwitterLogo', href: 'https://twitter.com' },
-    { label: 'RSS', icon: 'Rss', href: '/rss.xml' },
-    { label: 'Email', icon: 'Envelope', href: 'mailto:donghaiad@163.com' },
-  ]
-
   return (
     <div className="profile__socials">
-      {links.map((l) => (
+      {socialLinks.map((l) => (
         <Magnetic key={l.label} strength={0.4}>
           <a
             href={l.href}
