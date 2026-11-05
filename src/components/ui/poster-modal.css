@@ -1,0 +1,88 @@
+/* ==========================================================================
+   Poster Snapshot Modal
+   ========================================================================== */
+
+.poster-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+}
+
+.poster-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.poster-modal__dialog {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 440px;
+  max-height: 92vh;
+  overflow-y: auto;
+  padding: var(--space-5);
+  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  box-shadow: 0 24px 64px -12px rgba(0, 0, 0, 0.95);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.poster-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.poster-modal__title {
+  margin: 0;
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.poster-modal__close {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  color: var(--text-tertiary);
+  transition: color var(--dur-hover), background-color var(--dur-hover);
+}
+
+.poster-modal__close:hover {
+  color: var(--text-primary);
+  background: var(--accent-softer);
+}
+
+.poster-modal__preview {
+  display: flex;
+  justify-content: center;
+  background: var(--bg-inset);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+}
+
+.poster-modal__actions {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.poster-modal__btn {
+  flex: 1;
+  justify-content: center;
+  height: 38px;
+  font-size: var(--text-xs);
+}

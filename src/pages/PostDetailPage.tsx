@@ -8,6 +8,7 @@ import { Clock } from '@phosphor-icons/react/dist/icons/Clock'
 import { Eye } from '@phosphor-icons/react/dist/icons/Eye'
 import { CalendarBlank } from '@phosphor-icons/react/dist/icons/CalendarBlank'
 import { CaretRight } from '@phosphor-icons/react/dist/icons/CaretRight'
+import { ShareNetwork } from '@phosphor-icons/react/dist/icons/ShareNetwork'
 import { getPost, relatedPosts, type ArticleBlock } from '../data/posts'
 import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion'
 import { useScrollProgress } from '../hooks/useScrollProgress'
@@ -16,6 +17,8 @@ import { CoverArt } from '../components/visuals/CoverArt'
 import { Lightbox, type LightboxImage } from '../components/ui/Lightbox'
 import { CodeBlock } from '../components/ui/CodeBlock'
 import { PostCard } from '../components/ui/PostCard'
+import { PosterModal } from '../components/ui/PosterModal'
+import { Comments } from '../components/ui/Comments'
 import './post-detail.css'
 
 interface TocEntry {
@@ -35,6 +38,7 @@ export default function PostDetailPage() {
   const [lightbox, setLightbox] = useState<{ images: LightboxImage[]; index: number } | null>(
     null,
   )
+  const [posterOpen, setPosterOpen] = useState(false)
 
   const toc = useMemo<TocEntry[]>(() => {
     if (!post) return []
@@ -148,6 +152,17 @@ export default function PostDetailPage() {
                 <Eye size={14} aria-hidden="true" />
                 {post.views.toLocaleString('en-US')} 阅读
               </span>
+              <div className="post-detail__meta-right">
+                <button
+                  type="button"
+                  className="post-detail__share-btn"
+                  onClick={() => setPosterOpen(true)}
+                  aria-label="生成文章海报卡片"
+                >
+                  <ShareNetwork size={14} />
+                  <span>生成海报</span>
+                </button>
+              </div>
             </div>
           </motion.header>
 
@@ -181,7 +196,7 @@ export default function PostDetailPage() {
           </motion.div>
 
           {/* ---- Body: sections fade in as they scroll ---- */}
-          <div ref={articleRef as React.RefObject<HTMLDivElement>} className="post-detail__body">
+          <div className="post-detail__body">
             {post.body.map((block, i) => (
               <Block
                 key={i}
@@ -192,6 +207,9 @@ export default function PostDetailPage() {
               />
             ))}
           </div>
+
+          {/* ---- Comments ---- */}
+          <Comments slug={post.slug} />
 
           {/* ---- Related ---- */}
           <section className="post-detail__related">
@@ -293,6 +311,14 @@ export default function PostDetailPage() {
           index={lightbox.index}
           onClose={() => setLightbox(null)}
           onIndexChange={(i) => setLightbox((s) => (s ? { ...s, index: i } : s))}
+        />
+      )}
+
+      {post && (
+        <PosterModal
+          post={post}
+          isOpen={posterOpen}
+          onClose={() => setPosterOpen(false)}
         />
       )}
     </article>

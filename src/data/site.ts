@@ -11,7 +11,7 @@ export const site = {
     '个人技术博客，聚焦前端架构、性能优化、可视化与 AI 工程实践。深空科技风，含完整交互动画系统。',
   author: '冬海',
   authorTitle: 'Frontend Engineer · Creative Technologist',
-  url: 'https://sanzang.dev',
+  url: 'https://blog.uvsd.cn',
   email: 'donghaiad@163.com',
   location: 'Shanghai, China',
 } as const

@@ -1,0 +1,45 @@
+/* ==========================================================================
+   Giscus Comments Area
+   ========================================================================== */
+
+.post-comments {
+  margin-top: var(--space-8);
+  padding-top: var(--space-7);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.post-comments__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: var(--space-5);
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.post-comments__badge {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-inset);
+  border: 1px solid var(--border-subtle);
+}
+
+.post-comments__container {
+  min-height: 180px;
+  border-radius: var(--radius-md);
+}
+
+.post-comments__placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6);
+  border-radius: var(--radius-md);
+  border: 1px dashed var(--border-subtle);
+  background: var(--bg-surface);
+  color: var(--text-tertiary);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+}
