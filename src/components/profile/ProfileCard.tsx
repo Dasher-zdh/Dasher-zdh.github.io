@@ -4,6 +4,7 @@ import { useCountUp } from '../../hooks/useCountUp'
 import { useInView } from '../../hooks/useInView'
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
 import { site, stats, socialLinks } from '../../data/site'
+import { getTotalViews } from '../../data/posts'
 import { Magnetic } from '../ui/Magnetic'
 import './profile-card.css'
 
@@ -57,14 +58,17 @@ export function ProfileCard() {
       </p>
 
       <dl className="profile__stats">
-        {stats.map((stat, i) => (
-          <div key={stat.key} className="profile__stat">
-            <dt className="profile__stat-label">{stat.label}</dt>
-            <dd className="profile__stat-value mono">
-              <CountUp value={stat.value} start={inView} duration={1400 + i * 120} />
-            </dd>
-          </div>
-        ))}
+        {stats.map((stat, i) => {
+          const val = stat.key === 'reads' ? getTotalViews() : stat.value
+          return (
+            <div key={stat.key} className="profile__stat">
+              <dt className="profile__stat-label">{stat.label}</dt>
+              <dd className="profile__stat-value mono">
+                <CountUp value={val} start={inView} duration={1400 + i * 120} />
+              </dd>
+            </div>
+          )
+        })}
       </dl>
 
       <SocialRow />

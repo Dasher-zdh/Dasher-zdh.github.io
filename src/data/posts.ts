@@ -152,6 +152,13 @@ function loadAllPosts(): Post[] {
 
 export const posts: Post[] = loadAllPosts()
 
+/**
+ * Calculates total views dynamically across all posts.
+ */
+export function getTotalViews(): number {
+  return posts.reduce((sum, p) => sum + p.views, 0)
+}
+
 export const categories = Array.from(new Set(posts.map((p) => p.category)))
 export const allTags = Array.from(new Set(posts.flatMap((p) => p.tags))).sort()
 

@@ -13,6 +13,7 @@ import { getPost, relatedPosts, type ArticleBlock } from '../data/posts'
 import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion'
 import { useScrollProgress } from '../hooks/useScrollProgress'
 import { useReadingMemory } from '../hooks/useReadingMemory'
+import { useLiveViews } from '../hooks/useLiveViews'
 import { CoverArt } from '../components/visuals/CoverArt'
 import { Lightbox, type LightboxImage } from '../components/ui/Lightbox'
 import { CodeBlock } from '../components/ui/CodeBlock'
@@ -39,6 +40,7 @@ export default function PostDetailPage() {
     null,
   )
   const [posterOpen, setPosterOpen] = useState(false)
+  const liveViews = useLiveViews(slug, post?.views ?? 0)
 
   const toc = useMemo<TocEntry[]>(() => {
     if (!post) return []
@@ -150,7 +152,7 @@ export default function PostDetailPage() {
               </span>
               <span className="post-detail__meta-item">
                 <Eye size={14} aria-hidden="true" />
-                {post.views.toLocaleString('en-US')} 阅读
+                {liveViews.toLocaleString('en-US')} 阅读
               </span>
               <div className="post-detail__meta-right">
                 <button

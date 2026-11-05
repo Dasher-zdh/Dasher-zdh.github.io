@@ -20,6 +20,7 @@ export const navItems = [
   { to: '/', label: '首页', icon: 'House', hint: '返回首页' },
   { to: '/posts', label: '文章', icon: 'Article', hint: '浏览全部文章' },
   { to: '/archive', label: '归档', icon: 'ClockCounterClockwise', hint: '按时间归档' },
+  { to: '/tags', label: '标签', icon: 'Hash', hint: '按标签浏览' },
   { to: '/about', label: '关于', icon: 'User', hint: '关于冬海' },
 ] as const
 
