@@ -4,7 +4,7 @@ import { useCountUp } from '../../hooks/useCountUp'
 import { useInView } from '../../hooks/useInView'
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
 import { site, stats, socialLinks } from '../../data/site'
-import { getTotalViews } from '../../data/posts'
+import { getTotalSiteViews } from '../../services/views'
 import { Magnetic } from '../ui/Magnetic'
 import './profile-card.css'
 
@@ -59,7 +59,7 @@ export function ProfileCard() {
 
       <dl className="profile__stats">
         {stats.map((stat, i) => {
-          const val = stat.key === 'reads' ? getTotalViews() : stat.value
+          const val = stat.key === 'reads' ? getTotalSiteViews() : stat.value
           return (
             <div key={stat.key} className="profile__stat">
               <dt className="profile__stat-label">{stat.label}</dt>

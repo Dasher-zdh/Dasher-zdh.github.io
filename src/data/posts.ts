@@ -134,7 +134,7 @@ function loadAllPosts(): Post[] {
       tags: Array.isArray(data.tags) ? data.tags : [],
       date: data.date || new Date().toISOString().slice(0, 10),
       readTime: Number(data.readTime) || Math.max(1, Math.round(content.length / 400)),
-      views: Number(data.views) || Math.floor(Math.random() * 5000 + 1000),
+      views: Number(data.views) || 3500,
       featured: Boolean(data.featured),
       cover: {
         image: data.image || data.coverImage || undefined,

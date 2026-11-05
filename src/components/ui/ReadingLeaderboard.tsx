@@ -3,16 +3,16 @@ import { motion } from 'motion/react'
 import { TrendUp } from '@phosphor-icons/react/dist/icons/TrendUp'
 import { Eye } from '@phosphor-icons/react/dist/icons/Eye'
 import { posts, type Post } from '../../data/posts'
-import { getLocalDelta } from '../../services/views'
+import { getPostViews } from '../../services/views'
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
 import './reading-leaderboard.css'
 
 export function ReadingLeaderboard() {
   const reduced = usePrefersReducedMotion()
 
-  // Top 5 posts sorted by views (base + local delta)
+  // Top 5 posts sorted by views
   const topPosts = [...posts]
-    .map((p) => ({ ...p, views: p.views + getLocalDelta(p.slug) }))
+    .map((p) => ({ ...p, views: getPostViews(p.slug, p.views) }))
     .sort((a, b) => b.views - a.views)
     .slice(0, 5)
 

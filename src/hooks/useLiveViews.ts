@@ -1,29 +1,17 @@
 import { useState, useEffect } from 'react'
-import { fetchPostViews, recordPostView, getLocalDelta } from '../services/views'
+import { getPostViews, recordAndGetPostView } from '../services/views'
 
 /**
- * Hook to retrieve and increment live views for a specific post.
- * Synchronizes base markdown count with cloud busuanzi hits and local session visits.
+ * Hook to retrieve and increment live views for an article.
+ * Guarantees monotonic increase (never decreases or drops).
  */
 export function useLiveViews(slug: string, initialViews: number) {
-  const [views, setViews] = useState<number>(() => initialViews + getLocalDelta(slug))
+  const [views, setViews] = useState<number>(() => getPostViews(slug, initialViews))
 
   useEffect(() => {
-    let active = true
-
-    // 1. Increment on page load (with 10-minute session debounce)
-    recordPostView(slug)
-
-    // 2. Fetch live count asynchronously
-    fetchPostViews(slug, initialViews).then((live) => {
-      if (active) {
-        setViews(live)
-      }
-    })
-
-    return () => {
-      active = false
-    }
+    // Record view immediately on mount and sync state
+    const next = recordAndGetPostView(slug, initialViews)
+    setViews(next)
   }, [slug, initialViews])
 
   return views

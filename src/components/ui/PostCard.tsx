@@ -5,7 +5,7 @@ import { ArrowRight } from '@phosphor-icons/react/dist/icons/ArrowRight'
 import { Clock } from '@phosphor-icons/react/dist/icons/Clock'
 import { Eye } from '@phosphor-icons/react/dist/icons/Eye'
 import type { Post } from '../../data/posts'
-import { getLocalDelta } from '../../services/views'
+import { getPostViews } from '../../services/views'
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
 import { CoverArt } from '../visuals/CoverArt'
 import { TiltCard } from './TiltCard'
@@ -25,7 +25,7 @@ function formatDate(iso: string) {
 
 function PostCardBase({ post, index = 0, variant = 'default', animateIn = true }: PostCardProps) {
   const reduced = usePrefersReducedMotion()
-  const displayViews = post.views + getLocalDelta(post.slug)
+  const displayViews = getPostViews(post.slug, post.views)
 
   return (
     <motion.article

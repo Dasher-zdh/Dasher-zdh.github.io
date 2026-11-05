@@ -32,8 +32,8 @@ export const socialLinks = [
 ] as const
 
 export const stats = [
-  { key: 'posts', label: '文章', value: 128 },
-  { key: 'reads', label: '阅读量', value: 486_320 },
+  { key: 'posts', label: '文章', value: 13 },
+  { key: 'reads', label: '阅读量', value: 216_950 },
   { key: 'projects', label: '开源项目', value: 24 },
   { key: 'years', label: '写码年头', value: 7 },
 ] as const

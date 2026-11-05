@@ -1,83 +1,116 @@
 /**
- * Cloud & Local Hybrid Views Service
+ * Robust Monotonic Views Service
  *
- * - Persistent Cloud Counter via Busuanzi JSONP (cross-visitor, zero-backend, free, HTTPS)
- * - Local storage delta cache for offline resilience and immediate UI updates
- * - Per-article visit debouncing (prevents duplicate counting on refresh within 10 minutes)
+ * Guarantees:
+ * 1. Strictly Monotonic: View counts ONLY increase and NEVER decrease or fluctuate.
+ * 2. Unified Source of Truth: PostCard, ReadingLeaderboard, PostDetailPage and ProfileCard
+ *    all share the exact same consistent count.
+ * 3. Zero-Lag Local-First: Updates immediately on view; does not flicker or drop when
+ *    third-party network services (like Busuanzi or Adblock) fail or 502.
+ * 4. Session Debounce: Prevents accidental multiple increments on fast refresh (10min window).
  */
 
-const STORAGE_PREFIX = 'zdh_post_views_'
-const VISITED_PREFIX = 'zdh_visited_'
+import { posts } from '../data/posts'
 
-export interface ViewsData {
-  views: number
-  isRealtime: boolean
-}
+const STORAGE_MAX_PREFIX = 'zdh_views_max_'
+const STORAGE_DELTA_PREFIX = 'zdh_post_views_'
+const SESSION_VISITED_PREFIX = 'zdh_visited_'
 
 /**
- * Fetch cloud views or return local fallback + base
+ * Gets the current stable, monotonic view count for an article.
+ * Guarantees views >= baseViews and never drops.
  */
-export async function fetchPostViews(slug: string, baseViews: number): Promise<number> {
-  const localDelta = getLocalDelta(slug)
-  try {
-    const cloudViews = await fetchBusuanziPagePv(slug)
-    if (typeof cloudViews === 'number' && cloudViews > 0) {
-      return baseViews + cloudViews + localDelta
+export function getPostViews(slug: string, baseViews: number): number {
+  if (typeof window === 'undefined') return baseViews
+  const maxKey = `${STORAGE_MAX_PREFIX}${slug}`
+  const deltaKey = `${STORAGE_DELTA_PREFIX}${slug}`
+
+  const savedMax = Number(localStorage.getItem(maxKey) || 0)
+  const savedDelta = Number(localStorage.getItem(deltaKey) || 0)
+
+  const current = Math.max(baseViews, baseViews + savedDelta, savedMax)
+  // Ensure the max cache is always updated
+  if (current > savedMax) {
+    try {
+      localStorage.setItem(maxKey, String(current))
+    } catch {
+      /* ignore storage errors */
     }
-  } catch {
-    // Ignore network error and fallback gracefully
   }
-  return baseViews + localDelta
+  return current
 }
 
 /**
- * Increment view count for this post (once per session/10min)
+ * Increments the view count by 1 on article visit (debounced by 10 minutes).
+ * Returns the new guaranteed view count.
  */
-export function recordPostView(slug: string): boolean {
-  if (typeof window === 'undefined') return false
-  const visitedKey = `${VISITED_PREFIX}${slug}`
+export function recordAndGetPostView(slug: string, baseViews: number): number {
+  if (typeof window === 'undefined') return baseViews
+
+  const visitedKey = `${SESSION_VISITED_PREFIX}${slug}`
   const lastVisited = Number(sessionStorage.getItem(visitedKey) || 0)
   const now = Date.now()
 
-  // Prevent counting multiple times if refreshed within 10 minutes
-  if (lastVisited && now - lastVisited < 10 * 60 * 1000) {
-    return false
+  let currentViews = getPostViews(slug, baseViews)
+
+  // Increment if not visited in this session / 10min
+  if (!lastVisited || now - lastVisited > 10 * 60 * 1000) {
+    sessionStorage.setItem(visitedKey, String(now))
+    const deltaKey = `${STORAGE_DELTA_PREFIX}${slug}`
+    const nextDelta = Number(localStorage.getItem(deltaKey) || 0) + 1
+    localStorage.setItem(deltaKey, String(nextDelta))
+
+    currentViews = Math.max(currentViews + 1, baseViews + nextDelta)
+    localStorage.setItem(`${STORAGE_MAX_PREFIX}${slug}`, String(currentViews))
   }
 
-  sessionStorage.setItem(visitedKey, String(now))
+  // Trigger optional background cloud ping (does not block or downgrade local count)
+  syncCloudCounter(slug, currentViews).catch(() => {})
 
-  // Save local delta
-  const key = `${STORAGE_PREFIX}${slug}`
-  const currentDelta = Number(localStorage.getItem(key) || 0)
-  localStorage.setItem(key, String(currentDelta + 1))
-  return true
-}
-
-export function getLocalDelta(slug: string): number {
-  if (typeof window === 'undefined') return 0
-  const key = `${STORAGE_PREFIX}${slug}`
-  return Number(localStorage.getItem(key) || 0)
+  return currentViews
 }
 
 /**
- * Busuanzi JSONP requester for cloud counts
+ * Calculates total site views dynamically across all posts,
+ * reflecting every read increment accurately.
  */
-function fetchBusuanziPagePv(_slug: string): Promise<number | null> {
+export function getTotalSiteViews(): number {
+  return posts.reduce((sum, p) => sum + getPostViews(p.slug, p.views), 0)
+}
+
+/**
+ * Optional cloud sync via busuanzi/endpoint that strictly only updates upwards.
+ */
+async function syncCloudCounter(slug: string, currentLocalMax: number): Promise<void> {
+  if (typeof window === 'undefined') return
+
+  const cloudPv = await fetchBusuanziPagePv()
+  if (typeof cloudPv === 'number' && cloudPv > 0) {
+    const post = posts.find((p) => p.slug === slug)
+    const base = post ? post.views : 0
+    const candidate = base + cloudPv
+    if (candidate > currentLocalMax) {
+      localStorage.setItem(`${STORAGE_MAX_PREFIX}${slug}`, String(candidate))
+    }
+  }
+}
+
+function fetchBusuanziPagePv(): Promise<number | null> {
   return new Promise((resolve) => {
     if (typeof window === 'undefined') return resolve(null)
 
-    const callbackName = `bsz_callback_${Date.now()}_${Math.floor(Math.random() * 10000)}`
-    const timeout = window.setTimeout(() => {
+    const callbackName = `bsz_cb_${Date.now()}_${Math.floor(Math.random() * 10000)}`
+    const timer = window.setTimeout(() => {
       cleanup()
       resolve(null)
-    }, 2500)
+    }, 2000)
 
     const cleanup = () => {
-      window.clearTimeout(timeout)
+      window.clearTimeout(timer)
       delete (window as unknown as Record<string, unknown>)[callbackName]
-      const script = document.getElementById(callbackName)
-      if (script && script.parentNode) {
-        script.parentNode.removeChild(script)
+      const el = document.getElementById(callbackName)
+      if (el && el.parentNode) {
+        el.parentNode.removeChild(el)
       }
     }
 
