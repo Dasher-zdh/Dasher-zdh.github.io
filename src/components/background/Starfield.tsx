@@ -286,7 +286,6 @@ export function Starfield({
         }
       }
 
-      if (running) rafId = requestAnimationFrame(draw)
     }
 
     const loop = (time: number) => {
@@ -302,6 +301,7 @@ export function Starfield({
       lastTime = time
       lastFrame = time
       draw(dt)
+      if (running) rafId = requestAnimationFrame(loop)
     }
 
     const start = () => {
