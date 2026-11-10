@@ -81,54 +81,63 @@
 [data-theme='dark'] {
   color-scheme: dark;
 
-  /* Surfaces — 纯正岩石黑/深石墨色系，告别藏青偏蓝底 */
+  /* Surfaces — 纯正岩石黑/深石墨色系 */
   --bg-primary: #0a0a0c;
   --bg-secondary: #111114;
-  --bg-card: #16161a;
-  --bg-card-hover: #1c1c22;
+  --bg-card: #13131a;
+  --bg-card-hover: #1a1a24;
 
   --bg-base: #0a0a0c;
   --bg-deep: #060608;
   --bg-elevated: #111114;
-  --bg-surface: rgba(22, 22, 26, 0.85);
-  --bg-surface-solid: #16161a;
-  --bg-glass: rgba(17, 17, 20, 0.72);
+  --bg-surface: rgba(20, 20, 28, 0.85);
+  --bg-surface-solid: #13131a;
+  --bg-glass: rgba(14, 14, 20, 0.72);
   --bg-inset: rgba(6, 6, 8, 0.65);
 
   /* Fixed chrome */
-  --bg-chrome: rgba(10, 10, 12, 0.95);
-  --bg-chrome-line: rgba(255, 255, 255, 0.08);
+  --bg-chrome: rgba(8, 8, 12, 0.97);
+  --bg-chrome-line: rgba(255, 255, 255, 0.07);
 
   /* Ink */
-  --text-primary: #edf0f2;
-  --text-secondary: #9da3ab;
-  --text-muted: #6b7280;
-  --text-tertiary: #6b7280;
+  --text-primary: #edf0f4;
+  --text-secondary: #8e97a4;
+  --text-muted: #5a6272;
+  --text-tertiary: #5a6272;
   --text-inverse: #0a0a0c;
 
-  /* Accent — 极简纯白与钛银 (Vercel / Linear 黑白灰极客质感) */
+  /* 主色调：青蓝色 (冰晶/宇宙感) — 有辨识度又不刺眼 */
+  --color-ice: #38bdf8;       /* 主强调：冰蓝 */
+  --color-ice-dim: #0ea5e9;   /* 深一档 */
+  --color-ice-glow: rgba(56, 189, 248, 0.18);
+  --color-ice-soft: rgba(56, 189, 248, 0.10);
+  --color-ice-softer: rgba(56, 189, 248, 0.05);
+
+  /* Accent — 白色主调 + 冰蓝辅调 */
   --accent-primary: #ffffff;
-  --accent-secondary: #d1d5db;
+  --accent-secondary: #cbd5e1;
   --accent: #ffffff;
   --accent-bright: #ffffff;
-  --accent-deep: #9ca3af;
-  --accent-soft: rgba(255, 255, 255, 0.12);
-  --accent-softer: rgba(255, 255, 255, 0.06);
-  --accent-cyan: #e5e7eb;
+  --accent-deep: #94a3b8;
+  --accent-soft: rgba(255, 255, 255, 0.10);
+  --accent-softer: rgba(255, 255, 255, 0.05);
+  --accent-cyan: #38bdf8;
   --accent-on: #0a0a0c;
 
-  /* Lines — 岩黑低饱和度边缘线 */
-  --border-primary: rgba(255, 255, 255, 0.08);
-  --border-accent: rgba(255, 255, 255, 0.28);
-  --border: rgba(255, 255, 255, 0.08);
-  --border-strong: rgba(255, 255, 255, 0.35);
-  --border-subtle: rgba(255, 255, 255, 0.04);
+  /* Lines */
+  --border-primary: rgba(255, 255, 255, 0.07);
+  --border-accent: rgba(255, 255, 255, 0.22);
+  --border: rgba(255, 255, 255, 0.07);
+  --border-strong: rgba(255, 255, 255, 0.30);
+  --border-subtle: rgba(255, 255, 255, 0.03);
+  --border-ice: rgba(56, 189, 248, 0.25);
 
   /* Glow / shadow */
-  --glow-accent: rgba(255, 255, 255, 0.1);
-  --glow-soft: 0 0 32px -8px rgba(255, 255, 255, 0.15);
-  --shadow-card: 0 4px 20px -8px rgba(0, 0, 0, 0.8);
-  --shadow-card-hover: 0 16px 36px -12px rgba(0, 0, 0, 0.95), 0 0 0 1px rgba(255, 255, 255, 0.2);
+  --glow-accent: rgba(255, 255, 255, 0.08);
+  --glow-ice: 0 0 24px -6px rgba(56, 189, 248, 0.4);
+  --glow-soft: 0 0 32px -8px rgba(56, 189, 248, 0.12);
+  --shadow-card: 0 2px 12px -4px rgba(0, 0, 0, 0.7), 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-card-hover: 0 14px 32px -10px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(56, 189, 248, 0.15);
   --shadow-panel: 0 24px 60px -20px rgba(0, 0, 0, 0.9);
 
   /* Backdrop */
@@ -136,12 +145,12 @@
   --scrim: rgba(4, 4, 6, 0.95);
 
   /* Particles / grid */
-  --star-opacity: 0.85;
-  --grid-line: rgba(255, 255, 255, 0.025);
-  --grid-line-strong: rgba(255, 255, 255, 0.06);
-  --scan-color: rgba(255, 255, 255, 0.2);
+  --star-opacity: 0.8;
+  --grid-line: rgba(255, 255, 255, 0.02);
+  --grid-line-strong: rgba(56, 189, 248, 0.04);
+  --scan-color: rgba(56, 189, 248, 0.25);
 
-  --selection-bg: rgba(255, 255, 255, 0.22);
+  --selection-bg: rgba(56, 189, 248, 0.25);
   --selection-fg: #ffffff;
 }
 
