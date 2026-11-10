@@ -81,6 +81,7 @@ export function Starfield({
     let pointer = { x: 0, y: 0, active: false }
     let lastTime = 0
     let lastFrame = 0
+    let elapsed = 0   // cumulative animation time in ms, starts at 0
 
     // ---- Layer budgets (per the article's "define a budget, not a count") ----
     const mobile = window.innerWidth < 768
@@ -164,7 +165,7 @@ export function Starfield({
     }
 
     const draw = (dt: number) => {
-      const time = performance.now()
+      elapsed += dt
 
       ctx.clearRect(0, 0, width, height)
 
@@ -232,7 +233,7 @@ export function Starfield({
         }
 
         const twinkle = allowMotion
-          ? 0.82 + 0.18 * Math.sin(time * 0.001 * s.twinkleSpeed + s.phase)
+          ? 0.82 + 0.18 * Math.sin(elapsed * 0.001 * s.twinkleSpeed + s.phase)
           : 1
         const alpha = s.baseAlpha * twinkle
 
