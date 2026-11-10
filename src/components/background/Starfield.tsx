@@ -103,7 +103,7 @@ export function Starfield({
             y: Math.random() * height,
             r: layer.rMin + Math.random() * (layer.rMax - layer.rMin),
             baseAlpha: layer.alpha * (0.5 + Math.random() * 0.5),
-            twinkleSpeed: 0.4 + Math.random() * 1.6,
+            twinkleSpeed: 0.08 + Math.random() * 0.22,
             phase: Math.random() * Math.PI * 2,
             depth: layer.depth,
             // Velocity is expressed in px/second.
@@ -232,7 +232,7 @@ export function Starfield({
         }
 
         const twinkle = allowMotion
-          ? 0.62 + 0.38 * Math.sin(time * 0.001 * s.twinkleSpeed + s.phase)
+          ? 0.82 + 0.18 * Math.sin(time * 0.001 * s.twinkleSpeed + s.phase)
           : 1
         const alpha = s.baseAlpha * twinkle
 
