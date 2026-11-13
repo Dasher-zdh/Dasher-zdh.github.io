@@ -4,123 +4,27 @@ import { ArrowRight } from '@phosphor-icons/react/dist/icons/ArrowRight'
 import { Code } from '@phosphor-icons/react/dist/icons/Code'
 import { Compass } from '@phosphor-icons/react/dist/icons/Compass'
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
-import { usePointerPosition } from '../../hooks/usePointerPosition'
 import { useAdaptiveQuality } from '../../hooks/useAdaptiveQuality'
 import { Magnetic } from '../ui/Magnetic'
+import { DotWave } from './DotWave'
 import './hero.css'
 
 export function Hero() {
   const reduced = usePrefersReducedMotion()
-  const pointer = usePointerPosition(!reduced)
   const quality = useAdaptiveQuality()
-
-  // Subtle parallax offsets
-  const px = pointer?.x ?? 0
-  const py = pointer?.y ?? 0
-  const planetOffset = { x: px * -12, y: py * -8 }
-  const starOffset = { x: px * -4, y: py * -4 }
 
   return (
     <section className="hero-banner" data-quality={quality} aria-label="首页主视觉">
       {/* Background layer 1: Cosmic Nebulas */}
       <div className="hero-banner__nebula" aria-hidden="true" />
 
-      {/* Background layer 2: Static micro starfield with parallax */}
-      <motion.div
-        className="hero-banner__stars"
-        style={reduced ? undefined : { x: starOffset.x, y: starOffset.y }}
-        aria-hidden="true"
-      />
+      {/* Background layer 2: Static micro starfield */}
+      <div className="hero-banner__stars" aria-hidden="true" />
 
-      {/* Background layer 3: Space Station / Planet Visual (Right side) */}
-      <motion.div
-        className="hero-banner__visual"
-        style={reduced ? undefined : { x: planetOffset.x, y: planetOffset.y }}
-        aria-hidden="true"
-      >
-        <svg
-          className="hero-banner__planet-svg"
-          viewBox="0 0 520 340"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <defs>
-            <radialGradient id="planet-grad" cx="38%" cy="32%" r="65%">
-              <stop offset="0%" stopColor="#e0f2fe" stopOpacity="0.9" />
-              <stop offset="30%" stopColor="#7dd3fc" stopOpacity="0.55" />
-              <stop offset="68%" stopColor="#0c4a6e" stopOpacity="0.45" />
-              <stop offset="100%" stopColor="#0a0a12" stopOpacity="0.95" />
-            </radialGradient>
-            <radialGradient id="atmosphere-glow" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.16" />
-              <stop offset="60%" stopColor="#38bdf8" stopOpacity="0.04" />
-              <stop offset="100%" stopColor="transparent" stopOpacity="0" />
-            </radialGradient>
-            <linearGradient id="ring-grad" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stopColor="#bae6fd" stopOpacity="0.6" />
-              <stop offset="50%" stopColor="#64748b" stopOpacity="0.2" />
-              <stop offset="100%" stopColor="#7dd3fc" stopOpacity="0.45" />
-            </linearGradient>
-            <linearGradient id="ray-grad" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stopColor="#ffffff" stopOpacity="0.3" />
-              <stop offset="100%" stopColor="transparent" stopOpacity="0" />
-            </linearGradient>
-          </defs>
-
-          {/* Atmosphere halo */}
-          <circle cx="340" cy="170" r="145" fill="url(#atmosphere-glow)" />
-
-          {/* Background orbital rings */}
-          <ellipse
-            cx="340"
-            cy="170"
-            rx="185"
-            ry="64"
-            stroke="url(#ring-grad)"
-            strokeWidth="1.2"
-            strokeDasharray="4 3"
-            transform="rotate(-24 340 170)"
-            opacity="0.4"
-          />
-          <ellipse
-            cx="340"
-            cy="170"
-            rx="155"
-            ry="48"
-            stroke="url(#ring-grad)"
-            strokeWidth="2"
-            transform="rotate(-24 340 170)"
-            opacity="0.75"
-          />
-
-          {/* Planet Body */}
-          <circle cx="340" cy="170" r="102" fill="url(#planet-grad)" />
-
-          {/* Foreground planetary ring slice */}
-          <path
-            d="M 160 216 A 155 48 0 0 0 495 142"
-            stroke="url(#ring-grad)"
-            strokeWidth="2.4"
-            fill="none"
-            transform="rotate(-24 340 170)"
-          />
-
-          {/* Sci-Fi HUD Coordinates & Telemetry */}
-          <g className="hero-banner__hud" opacity="0.65" fontFamily="var(--font-mono)">
-            <circle cx="340" cy="170" r="126" stroke="#9ca3af" strokeWidth="0.6" strokeDasharray="2 4" />
-            <line x1="200" y1="170" x2="480" y2="170" stroke="#9ca3af" strokeWidth="0.4" strokeDasharray="3 3" />
-            <line x1="340" y1="30" x2="340" y2="310" stroke="#9ca3af" strokeWidth="0.4" strokeDasharray="3 3" />
-
-            {/* Target Reticles */}
-            <circle cx="270" cy="115" r="5" stroke="#ffffff" strokeWidth="0.8" fill="none" />
-            <circle cx="270" cy="115" r="1.5" fill="#ffffff" />
-            <text x="282" y="119" fill="#e5e7eb" fontSize="9" letterSpacing="0.1em">ORBIT // 42.8°N</text>
-
-            <rect x="375" y="220" width="76" height="18" rx="3" stroke="#9ca3af" strokeWidth="0.6" fill="#111114" fillOpacity="0.85" />
-            <text x="382" y="233" fill="#9da3ab" fontSize="8" letterSpacing="0.08em">WARP ENGINE: OK</text>
-          </g>
-        </svg>
-      </motion.div>
+      {/* Background layer 3: Winter sea perspective dot wave */}
+      <div className="hero-banner__wave" aria-hidden="true">
+        <DotWave reduced={reduced} quality={quality} />
+      </div>
 
       {/* Hero Content (Left) */}
       <div className="hero-banner__content">
