@@ -16,8 +16,8 @@
   border-radius: 1px;
   background: linear-gradient(
     to bottom,
-    var(--accent),
-    rgba(45, 212, 191, 0.25) 65%,
+    var(--color-ice),
+    var(--color-ice-soft) 65%,
     transparent
   );
   transform-origin: top;
@@ -50,8 +50,8 @@
   height: 9px;
   border-radius: 50%;
   background: var(--bg-base);
-  border: 2px solid var(--accent);
-  box-shadow: 0 0 10px rgba(45, 212, 191, 0.6);
+  border: 2px solid var(--color-ice);
+  box-shadow: var(--glow-ice);
   transition: transform var(--dur-card) var(--ease-spring);
 }
 
@@ -60,7 +60,7 @@
 }
 
 .timeline__node[data-latest='true'] .timeline__node-dot {
-  background: var(--accent);
+  background: var(--color-ice);
   animation: breathe 3.6s ease-in-out infinite;
 }
 
@@ -68,7 +68,7 @@
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  border: 1px solid var(--accent);
+  border: 1px solid var(--color-ice);
   animation: pulse-ring 2.8s ease-out infinite;
 }
 
@@ -105,9 +105,9 @@
 .timeline__tag {
   padding: 2px 8px;
   border-radius: var(--radius-pill);
-  color: var(--accent);
-  background: var(--accent-soft);
-  border: 1px solid var(--border-strong);
+  color: var(--color-ice);
+  background: var(--color-ice-softer);
+  border: 1px solid var(--border-ice);
 }
 
 .timeline__title {
@@ -119,7 +119,7 @@
 }
 
 .timeline__item:hover .timeline__title {
-  color: var(--accent-bright);
+  color: var(--color-ice);
 }
 
 .timeline__desc {

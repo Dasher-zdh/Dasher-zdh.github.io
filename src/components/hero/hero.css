@@ -13,11 +13,9 @@
   padding: var(--space-6) var(--space-7);
   border-radius: 16px;
   border: 1px solid var(--border-primary);
-  background: radial-gradient(
-      ellipse 80% 70% at 88% 50%,
-      rgba(255, 255, 255, 0.04),
-      transparent 70%
-    ),
+  background:
+    radial-gradient(ellipse 60% 80% at 82% 50%, rgba(56, 189, 248, 0.09), transparent 70%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 40%),
     var(--bg-card);
   box-shadow: 0 12px 36px -10px rgba(0, 0, 0, 0.9);
   overflow: hidden;
@@ -68,7 +66,7 @@
 .hero-banner__planet-svg {
   width: 100%;
   height: 100%;
-  filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.12));
+  filter: drop-shadow(0 0 32px rgba(56, 189, 248, 0.18));
 }
 
 /* Hero Content */
@@ -102,8 +100,8 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--accent-primary);
-  box-shadow: 0 0 8px var(--accent-primary);
+  background: var(--color-ice);
+  box-shadow: 0 0 8px var(--color-ice);
   animation: breathe 3.2s ease-in-out infinite;
 }
 
@@ -202,7 +200,7 @@
 
 .btn--ghost:hover {
   border-color: var(--border-accent);
-  color: #ffffff;
+  color: var(--text-primary);
   background: var(--bg-card-hover);
   box-shadow: 0 0 16px -4px rgba(255, 255, 255, 0.15);
   transform: translateY(-2px);
@@ -211,8 +209,8 @@
 /* Light theme Hero adjustments */
 [data-theme='light'] .hero-banner {
   background: radial-gradient(
-      ellipse 90% 80% at 85% 50%,
-      rgba(15, 23, 42, 0.04),
+      ellipse 60% 80% at 82% 50%,
+      rgba(2, 132, 199, 0.08),
       transparent 70%
     ),
     radial-gradient(
@@ -229,7 +227,15 @@
 }
 
 [data-theme='light'] .hero-banner__stars {
-  opacity: 0.15;
+  opacity: 0;
+}
+
+[data-theme='light'] .hero-banner__planet-svg {
+  filter: drop-shadow(0 10px 28px rgba(2, 132, 199, 0.22));
+}
+
+[data-theme='light'] .hero-banner__hud {
+  opacity: 0.35;
 }
 
 [data-theme='light'] .hero-banner__title-line1 {

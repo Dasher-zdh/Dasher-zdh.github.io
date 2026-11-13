@@ -52,8 +52,8 @@
   inset: 0;
   background: linear-gradient(
     120deg,
-    rgba(45, 212, 191, 0.14),
-    rgba(34, 211, 238, 0.05)
+    var(--color-ice-soft),
+    transparent
   );
   opacity: 0;
   transition: opacity var(--dur-hover) var(--ease-out);
@@ -62,10 +62,10 @@
 
 .tag-cloud__tag:hover {
   transform: translateY(-2px);
-  color: var(--accent-bright);
-  border-color: var(--border-strong);
+  color: var(--color-ice);
+  border-color: var(--border-ice);
   background: var(--bg-elevated);
-  box-shadow: 0 6px 18px -10px rgba(45, 212, 191, 0.55);
+  box-shadow: var(--glow-ice);
 }
 
 .tag-cloud__tag:hover .tag-cloud__weight {
@@ -79,9 +79,9 @@
 
 .tag-cloud__tag[data-active='true'] {
   color: var(--accent-on);
-  background: linear-gradient(120deg, var(--accent), var(--accent-cyan));
+  background: var(--color-ice);
   border-color: transparent;
-  box-shadow: 0 6px 20px -10px rgba(45, 212, 191, 0.8);
+  box-shadow: var(--glow-ice);
 }
 
 .tag-cloud__tag[data-active='true'] .tag-cloud__hash,

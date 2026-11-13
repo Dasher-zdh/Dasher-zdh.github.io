@@ -110,7 +110,7 @@ ol {
 /* ---- Scrollbar ---- */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+  scrollbar-color: var(--border-accent) transparent;
 }
 
 ::-webkit-scrollbar {
@@ -121,13 +121,13 @@ ol {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.18);
+  background: var(--border-accent);
   border-radius: var(--radius-pill);
   border: 3px solid transparent;
   background-clip: content-box;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.35);
+  background: var(--border-strong);
   background-clip: content-box;
 }
 

@@ -46,20 +46,20 @@ export function Hero() {
         >
           <defs>
             <radialGradient id="planet-grad" cx="38%" cy="32%" r="65%">
-              <stop offset="0%" stopColor="#ffffff" stopOpacity="0.85" />
-              <stop offset="35%" stopColor="#d1d5db" stopOpacity="0.5" />
-              <stop offset="70%" stopColor="#4b5563" stopOpacity="0.3" />
-              <stop offset="100%" stopColor="#111114" stopOpacity="0.95" />
+              <stop offset="0%" stopColor="#e0f2fe" stopOpacity="0.9" />
+              <stop offset="30%" stopColor="#7dd3fc" stopOpacity="0.55" />
+              <stop offset="68%" stopColor="#0c4a6e" stopOpacity="0.45" />
+              <stop offset="100%" stopColor="#0a0a12" stopOpacity="0.95" />
             </radialGradient>
             <radialGradient id="atmosphere-glow" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#ffffff" stopOpacity="0.12" />
-              <stop offset="60%" stopColor="#ffffff" stopOpacity="0.03" />
+              <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.16" />
+              <stop offset="60%" stopColor="#38bdf8" stopOpacity="0.04" />
               <stop offset="100%" stopColor="transparent" stopOpacity="0" />
             </radialGradient>
             <linearGradient id="ring-grad" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stopColor="#ffffff" stopOpacity="0.5" />
-              <stop offset="50%" stopColor="#9ca3af" stopOpacity="0.2" />
-              <stop offset="100%" stopColor="#e5e7eb" stopOpacity="0.4" />
+              <stop offset="0%" stopColor="#bae6fd" stopOpacity="0.6" />
+              <stop offset="50%" stopColor="#64748b" stopOpacity="0.2" />
+              <stop offset="100%" stopColor="#7dd3fc" stopOpacity="0.45" />
             </linearGradient>
             <linearGradient id="ray-grad" x1="0" y1="0" x2="1" y2="0">
               <stop offset="0%" stopColor="#ffffff" stopOpacity="0.3" />

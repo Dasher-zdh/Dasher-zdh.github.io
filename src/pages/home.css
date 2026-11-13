@@ -16,10 +16,11 @@
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--space-6);
+  gap: var(--space-8);
 }
 
-.home-section {
+.home-main > .home-section,
+.home-main > .hero-banner {
   margin: 0;
 }
 
@@ -181,4 +182,49 @@
   .home-right-rail__inner {
     grid-template-columns: 1fr;
   }
+}
+
+/* ==========================================================================
+   Rail widgets already draw the card — flatten nested components so the
+   right column reads as one quiet surface per widget, not cards in cards.
+   ========================================================================== */
+.home-widget .leaderboard {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  overflow: visible;
+}
+
+.home-widget .timeline {
+  padding-left: var(--space-5);
+}
+
+.home-widget .timeline__node {
+  left: calc(var(--space-5) * -1 + 1px);
+}
+
+.home-widget .timeline__item {
+  padding-bottom: var(--space-4);
+}
+
+.home-widget .timeline__card {
+  padding: 0;
+  border: 0;
+  background: none;
+}
+
+.home-widget .timeline__item:hover .timeline__card {
+  background: none;
+  box-shadow: none;
+  transform: none;
+}
+
+.home-widget .timeline__title {
+  font-size: var(--text-sm);
+}
+
+.home-widget .timeline__desc {
+  font-size: 12.5px;
 }

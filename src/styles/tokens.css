@@ -191,8 +191,16 @@
   --accent-deep: #1e293b;
   --accent-soft: rgba(15, 23, 42, 0.08);
   --accent-softer: rgba(15, 23, 42, 0.04);
-  --accent-cyan: #475569;
+  --accent-cyan: #0369a1;
   --accent-on: #ffffff;
+
+  --color-ice: #0284c7;
+  --color-ice-dim: #0369a1;
+  --color-ice-glow: rgba(2, 132, 199, 0.16);
+  --color-ice-soft: rgba(2, 132, 199, 0.09);
+  --color-ice-softer: rgba(2, 132, 199, 0.045);
+  --border-ice: rgba(2, 132, 199, 0.3);
+  --glow-ice: 0 0 20px -8px rgba(2, 132, 199, 0.35);
 
   --border-primary: rgba(15, 23, 42, 0.1);
   --border-accent: rgba(15, 23, 42, 0.3);

@@ -57,10 +57,10 @@
 
 /* ---- Hover: lift -4px, brighten border, spread shadow (youhua.txt §6) ---- */
 .post-card__link:hover {
-  transform: translateY(-4px);
-  border-color: var(--border-accent);
+  transform: translateY(-3px);
+  border-color: var(--border-ice);
   background: var(--bg-card-hover);
-  box-shadow: 0 14px 30px -10px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.2);
+  box-shadow: var(--shadow-card-hover);
 }
 
 /* ---- Active: press feedback ---- */
@@ -72,8 +72,7 @@
 /* ---- Media (youhua.txt §4: 16:9, ~150px height) ---- */
 .post-card__media {
   position: relative;
-  aspect-ratio: 16 / 9;
-  height: 150px;
+  aspect-ratio: 2 / 1;
   width: 100%;
   overflow: hidden;
   border-bottom: 1px solid var(--border-primary);
@@ -97,11 +96,9 @@
   left: 10px;
   padding: 3px 9px;
   border-radius: var(--radius-pill);
-  font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.08em;
-  color: var(--accent-primary);
+  color: var(--text-primary);
   background: var(--bg-surface);
   border: 1px solid var(--border-accent);
   backdrop-filter: blur(8px);
@@ -137,7 +134,7 @@
 }
 
 .post-card__link:hover .post-card__title {
-  color: var(--accent-primary);
+  color: var(--color-ice);
 }
 
 .post-card__excerpt {
@@ -196,7 +193,7 @@
 }
 
 .post-card__link:hover .post-card__tag {
-  color: var(--accent);
+  color: var(--color-ice);
   border-color: var(--border-strong);
 }
 
@@ -247,17 +244,14 @@
 }
 
 .post-card[data-variant='featured'] .post-card__link {
-  border-color: var(--border-accent);
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.04), transparent 60%), var(--bg-card);
-  box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.8), 0 0 20px -8px rgba(255, 255, 255, 0.1);
+  border-color: var(--border-ice);
+  background: linear-gradient(160deg, var(--color-ice-softer), transparent 55%), var(--bg-card);
 }
 
 .post-card[data-variant='featured'] .post-card__link:hover {
-  transform: translateY(-5px);
-  border-color: #ffffff;
-  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.95), 0 0 24px -4px rgba(255, 255, 255, 0.2);
+  transform: translateY(-3px);
+  border-color: var(--color-ice);
+  box-shadow: var(--shadow-card-hover);
 }
 
-.post-card[data-variant='featured'] .post-card__media {
-  height: 160px;
-}
+
